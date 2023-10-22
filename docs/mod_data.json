@@ -1,10 +1,45 @@
 {
   "repositories": [
-    "https://github.com/erkle64/Unfoundry",
-    "https://github.com/erkle64/Duplicationer",
-    "https://github.com/erkle64/StepUp2TheBlocks",
-    "https://github.com/erkle64/FoundryCommands",
-    "https://github.com/erkle64/BulkDemolishTerrain",
-    "https://github.com/erkle64/OreMultiplier"
+    {
+      "name": "Unfoundry",
+      "url": "https://github.com/erkle64/Unfoundry",
+      "requirements": [
+      ]
+    },
+    {
+      "name": "BulkDemolishTerrain",
+      "url": "https://github.com/erkle64/BulkDemolishTerrain",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
+      "name": "Duplicationer",
+      "url": "https://github.com/erkle64/Duplicationer",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
+      "name": "FoundryCommands",
+      "url": "https://github.com/erkle64/FoundryCommands",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
+      "name": "OreMultiplier",
+      "url": "https://github.com/erkle64/OreMultiplier",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
+      "name": "StepUp2TheBlocks",
+      "url": "https://github.com/erkle64/StepUp2TheBlocks",
+      "requirements": [
+        "Unfoundry"
+      ]
+    }
   ]
 }
