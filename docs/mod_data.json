@@ -1,10 +1,10 @@
 {
-  "repositories": {
-    "Unfoundry",
-    "Duplicationer",
-    "StepUp2TheBlocks",
-    "FoundryCommands",
-    "BulkDemolishTerrain",
-    "OreMultiplier"
-  }
+  "repositories": [
+    "https://github.com/erkle64/Unfoundry",
+    "https://github.com/erkle64/Duplicationer",
+    "https://github.com/erkle64/StepUp2TheBlocks",
+    "https://github.com/erkle64/FoundryCommands",
+    "https://github.com/erkle64/BulkDemolishTerrain",
+    "https://github.com/erkle64/OreMultiplier"
+  ]
 }
