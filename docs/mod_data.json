@@ -2,12 +2,14 @@
   "repositories": [
     {
       "name": "Unfoundry",
+      "folder": "A_Unfoundry",
       "url": "https://github.com/erkle64/Unfoundry",
       "requirements": [
       ]
     },
     {
       "name": "BulkDemolishTerrain",
+      "folder": "BulkDemolishTerrain",
       "url": "https://github.com/erkle64/BulkDemolishTerrain",
       "requirements": [
         "Unfoundry"
@@ -15,6 +17,7 @@
     },
     {
       "name": "Duplicationer",
+      "folder": "Duplicationer",
       "url": "https://github.com/erkle64/Duplicationer",
       "requirements": [
         "Unfoundry"
@@ -22,6 +25,7 @@
     },
     {
       "name": "FoundryCommands",
+      "folder": "FoundryCommands",
       "url": "https://github.com/erkle64/FoundryCommands",
       "requirements": [
         "Unfoundry"
@@ -29,6 +33,7 @@
     },
     {
       "name": "OreMultiplier",
+      "folder": "OreMultiplier",
       "url": "https://github.com/erkle64/OreMultiplier",
       "requirements": [
         "Unfoundry"
@@ -36,6 +41,7 @@
     },
     {
       "name": "StepUp2TheBlocks",
+      "folder": "StepUp2TheBlocks",
       "url": "https://github.com/erkle64/StepUp2TheBlocks",
       "requirements": [
         "Unfoundry"
