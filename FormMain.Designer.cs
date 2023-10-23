@@ -39,6 +39,7 @@
             this.listConfigurations = new System.Windows.Forms.ListBox();
             this.labelConfigurations = new System.Windows.Forms.Label();
             this.panelMods = new System.Windows.Forms.Panel();
+            this.buttonModHome = new System.Windows.Forms.Button();
             this.listMods = new System.Windows.Forms.CheckedListBox();
             this.labelMods = new System.Windows.Forms.Label();
             this.panelPath = new System.Windows.Forms.Panel();
@@ -174,6 +175,7 @@
             // 
             // panelMods
             // 
+            this.panelMods.Controls.Add(this.buttonModHome);
             this.panelMods.Controls.Add(this.listMods);
             this.panelMods.Controls.Add(this.labelMods);
             this.panelMods.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -181,6 +183,17 @@
             this.panelMods.Name = "panelMods";
             this.panelMods.Size = new System.Drawing.Size(324, 288);
             this.panelMods.TabIndex = 2;
+            // 
+            // buttonModHome
+            // 
+            this.buttonModHome.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonModHome.Location = new System.Drawing.Point(0, 256);
+            this.buttonModHome.Name = "buttonModHome";
+            this.buttonModHome.Size = new System.Drawing.Size(324, 32);
+            this.buttonModHome.TabIndex = 2;
+            this.buttonModHome.Text = "Open Selected Mod Homepage";
+            this.buttonModHome.UseVisualStyleBackColor = true;
+            this.buttonModHome.Click += new System.EventHandler(this.buttonModHome_Click);
             // 
             // listMods
             // 
@@ -318,5 +331,6 @@
         private Panel panel1;
         private Button buttonAddConfiguration;
         private Button buttonRemoveConfiguration;
+        private Button buttonModHome;
     }
 }

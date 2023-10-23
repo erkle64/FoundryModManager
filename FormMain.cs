@@ -15,7 +15,6 @@ namespace FoundryModManager
         private string? _configFilePath;
         private int _currentSelectedConfiguration = -1;
         private bool _ignoreEvents = false;
-        private const int foundryAppId = 983870;
 
         public FormMain()
         {
@@ -168,6 +167,8 @@ namespace FoundryModManager
             if (!Directory.Exists(modsPath)) Directory.CreateDirectory(modPath);
 
             var cachedModFolderPath = Path.Combine(_cacheFolderPath, modName);
+            if (!Directory.Exists(cachedModFolderPath)) Directory.CreateDirectory(cachedModFolderPath);
+
             var cachedModPath = Path.Combine(cachedModFolderPath, Path.GetFileName(modURL));
             var cachedModSourcePath = Path.Combine(cachedModFolderPath, "source.url");
 
@@ -216,15 +217,26 @@ namespace FoundryModManager
 
             using (var httpClient = new HttpClient())
             {
-                var task = Task.Run(() => httpClient.GetStringAsync("https://erkle64.github.io/FoundryModManager/mod_data.json"));
+                var task = Task.Run(() => httpClient.GetStringAsync("https://erkle64.github.io/FoundryModManager/sources.json"));
                 task.Wait();
                 if (task.IsCompletedSuccessfully)
                 {
                     var json = task.Result;
-                    var data = JsonConvert.DeserializeObject<RepositoryData>(json);
-                    if (data != null && data.repositories != null)
+                    var data = JsonConvert.DeserializeObject<SourcesData>(json);
+                    if (data != null && data.sources != null)
                     {
-                        _repositories = data.repositories;
+                        var sources = data.sources;
+
+                        var combinedRepositories = new List<RepositoryData.Entry>();
+                        foreach (var source in sources)
+                        {
+                            var repositories = LoadRepositoriesFrom(source);
+                            if (repositories != null)
+                            {
+                                combinedRepositories.AddRange(repositories);
+                            }
+                        }
+                        _repositories = combinedRepositories.ToArray();
 
                         listMods.BeginUpdate();
                         listMods.Items.Clear();
@@ -240,12 +252,35 @@ namespace FoundryModManager
                         }
                         listMods.EndUpdate();
                     }
-                    else
+                }
+            }
+
+            if (_repositories == null || _repositories.Length == 0)
+            {
+                throw new Exception("Repository data not found.");
+            }
+        }
+
+        private RepositoryData.Entry[]? LoadRepositoriesFrom(string modDataURL)
+        {
+            Debug.Assert(_cacheFolderPath != null);
+
+            using (var httpClient = new HttpClient())
+            {
+                var task = Task.Run(() => httpClient.GetStringAsync(modDataURL));
+                task.Wait();
+                if (task.IsCompletedSuccessfully)
+                {
+                    var json = task.Result;
+                    var data = JsonConvert.DeserializeObject<RepositoryData>(json);
+                    if (data != null && data.repositories != null)
                     {
-                        throw new Exception("Repository data not found.");
+                        return data.repositories;
                     }
                 }
             }
+
+            return null;
         }
 
         private void FillConfigurationsList()
@@ -526,6 +561,28 @@ namespace FoundryModManager
                 FillConfigurationsList();
                 SelectConfiguration(0);
                 SaveConfigurations();
+            }
+        }
+
+        private void buttonModHome_Click(object sender, EventArgs e)
+        {
+            var modIndex = listMods.SelectedIndex;
+            if (modIndex < 0) return;
+
+            Debug.Assert(_repositories != null);
+            Debug.Assert(_repositories.Length > modIndex);
+
+            var repository = _repositories[modIndex];
+            Debug.Assert(repository != null);
+
+            string? modHome = repository.home;
+            if (!string.IsNullOrEmpty(modHome))
+            {
+                Process.Start(new ProcessStartInfo()
+                {
+                    FileName = modHome,
+                    UseShellExecute = true
+                });
             }
         }
     }
