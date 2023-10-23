@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.panelButtons = new System.Windows.Forms.Panel();
             this.buttonApplyAndRunSteamDemo = new System.Windows.Forms.Button();
             this.buttonApplyAndRun = new System.Windows.Forms.Button();
@@ -291,6 +292,7 @@
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.panelPath);
             this.Controls.Add(this.statusStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Padding = new System.Windows.Forms.Padding(4);
             this.Text = "Foundry Mod Manager";
