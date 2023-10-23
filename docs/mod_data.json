@@ -4,6 +4,7 @@
       "name": "Unfoundry",
       "folder": "A_Unfoundry",
       "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.1.0/Unfoundry.mod",
+      "home": "https://github.com/erkle64/Unfoundry/",
       "requirements": [
       ]
     },
@@ -11,6 +12,7 @@
       "name": "BulkDemolishTerrain",
       "folder": "BulkDemolishTerrain",
       "url": "https://github.com/erkle64/BulkDemolishTerrain/releases/download/v1.1.0/BulkDemolishTerrain.mod",
+      "home": "https://github.com/erkle64/BulkDemolishTerrain/",
       "requirements": [
         "Unfoundry"
       ]
@@ -19,6 +21,7 @@
       "name": "Duplicationer",
       "folder": "Duplicationer",
       "url": "https://github.com/erkle64/Duplicationer/releases/download/v0.3.3/Duplicationer.mod",
+      "home": "https://github.com/erkle64/Duplicationer/",
       "requirements": [
         "Unfoundry"
       ]
@@ -27,6 +30,7 @@
       "name": "FoundryCommands",
       "folder": "FoundryCommands",
       "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.5.2/FoundryCommands.mod",
+      "home": "https://github.com/erkle64/FoundryCommands/",
       "requirements": [
         "Unfoundry"
       ]
@@ -35,6 +39,7 @@
       "name": "OreMultiplier",
       "folder": "OreMultiplier",
       "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.1.0/OreMultiplier.mod",
+      "home": "https://github.com/erkle64/OreMultiplier/",
       "requirements": [
         "Unfoundry"
       ]
@@ -43,6 +48,7 @@
       "name": "StepUp2TheBlocks",
       "folder": "StepUp2TheBlocks",
       "url": "https://github.com/erkle64/StepUp2TheBlocks/releases/download/v0.1.0/StepUp2TheBlocks.mod",
+      "home": "https://github.com/erkle64/StepUp2TheBlocks/",
       "requirements": [
         "Unfoundry"
       ]
