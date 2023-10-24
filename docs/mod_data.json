@@ -3,7 +3,7 @@
     {
       "name": "Unfoundry",
       "folder": "A_Unfoundry",
-      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.1.0/Unfoundry.mod",
+      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.2.0/Unfoundry.mod",
       "home": "https://github.com/erkle64/Unfoundry/",
       "requirements": [
       ]
@@ -22,6 +22,15 @@
       "folder": "Duplicationer",
       "url": "https://github.com/erkle64/Duplicationer/releases/download/v0.3.3/Duplicationer.mod",
       "home": "https://github.com/erkle64/Duplicationer/",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
+      "name": "Embiggenator",
+      "folder": "Embiggenator",
+      "url": "https://github.com/erkle64/Embiggenator/releases/download/v1.1.0/Embiggenator.mod",
+      "home": "https://github.com/erkle64/Embiggenator/",
       "requirements": [
         "Unfoundry"
       ]
