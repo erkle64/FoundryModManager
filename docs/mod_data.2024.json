@@ -1,0 +1,21 @@
+{
+  "repositories": [
+    {
+      "name": "Unfoundry",
+      "folder": "A_Unfoundry",
+      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.0/Unfoundry.mod",
+      "home": "https://github.com/erkle64/Unfoundry/",
+      "requirements": [
+      ]
+    },
+    {
+      "name": "Duplicationer",
+      "folder": "Duplicationer",
+      "url": "https://github.com/erkle64/Duplicationer/releases/download/v0.4.0/Duplicationer.mod",
+      "home": "https://github.com/erkle64/Duplicationer/",
+      "requirements": [
+        "Unfoundry"
+      ]
+    }
+  ]
+}

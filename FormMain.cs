@@ -25,7 +25,7 @@ namespace FoundryModManager
         {
             var appdataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
-            _dataFolderPath = Path.Combine(appdataPath, @"Erkle\FoundryModManager");
+            _dataFolderPath = Path.Combine(appdataPath, @"Erkle\FoundryModManager2024");
             if (!Directory.Exists(_dataFolderPath)) Directory.CreateDirectory(_dataFolderPath);
 
             _cacheFolderPath = Path.Combine(_dataFolderPath, @"Cache");
@@ -97,28 +97,6 @@ namespace FoundryModManager
             if (!Directory.Exists(modsPath)) Directory.CreateDirectory(modsPath);
 
             using var httpClient = new HttpClient();
-
-            var harmonyURL = "https://github.com/erkle64/Unfoundry/releases/download/v0.1.0/0Harmony.dll";
-            var cachedHarmonyPath = Path.Combine(_cacheFolderPath, "0Harmony.dll");
-            if (!File.Exists(cachedHarmonyPath))
-            {
-                toolStripStatusLabel1.Text = $"Downloading {Path.GetFileName(harmonyURL)}";
-                statusStrip1.Refresh();
-                var task = Task.Run(() => DownloadFile(httpClient, harmonyURL, cachedHarmonyPath));
-                task.Wait();
-                toolStripStatusLabel1.Text = "";
-                statusStrip1.Refresh();
-            }
-
-            if (File.Exists(cachedHarmonyPath))
-            {
-                toolStripStatusLabel1.Text = $"Installing Harmony";
-                statusStrip1.Refresh();
-                var targetHarmonyPath = Path.Combine(inputPath.Text, @"Foundry_Data\Managed\0Harmony.dll");
-                File.Copy(cachedHarmonyPath, targetHarmonyPath, true);
-                toolStripStatusLabel1.Text = "";
-                statusStrip1.Refresh();
-            }
 
             Debug.Assert(_repositories != null);
             for (int modIndex = 0; modIndex < _repositories.Length; modIndex++)
@@ -217,7 +195,7 @@ namespace FoundryModManager
 
             using (var httpClient = new HttpClient())
             {
-                var task = Task.Run(() => httpClient.GetStringAsync("https://erkle64.github.io/FoundryModManager/sources.json"));
+                var task = Task.Run(() => httpClient.GetStringAsync("https://erkle64.github.io/FoundryModManager/sources.2024.json"));
                 task.Wait();
                 if (task.IsCompletedSuccessfully)
                 {
