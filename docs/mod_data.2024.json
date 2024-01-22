@@ -9,10 +9,37 @@
       ]
     },
     {
+      "name": "BulkDemolishTerrain",
+      "folder": "BulkDemolishTerrain",
+      "url": "https://github.com/erkle64/BulkDemolishTerrain/releases/download/v1.3.0/BulkDemolishTerrain.mod",
+      "home": "https://github.com/erkle64/BulkDemolishTerrain/",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "Duplicationer",
       "folder": "Duplicationer",
       "url": "https://github.com/erkle64/Duplicationer/releases/download/v0.4.0/Duplicationer.mod",
       "home": "https://github.com/erkle64/Duplicationer/",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
+      "name": "Embiggenator",
+      "folder": "Embiggenator",
+      "url": "https://github.com/erkle64/Embiggenator/releases/download/v1.2.0/Embiggenator.mod",
+      "home": "https://github.com/erkle64/Embiggenator/",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
+      "name": "FoundryCommands",
+      "folder": "FoundryCommands",
+      "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.0/FoundryCommands.mod",
+      "home": "https://github.com/erkle64/FoundryCommands/",
       "requirements": [
         "Unfoundry"
       ]
