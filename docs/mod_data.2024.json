@@ -38,7 +38,7 @@
     {
       "name": "FoundryCommands",
       "folder": "FoundryCommands",
-      "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.0/FoundryCommands.mod",
+      "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.1/FoundryCommands.mod",
       "home": "https://github.com/erkle64/FoundryCommands/",
       "requirements": [
         "Unfoundry"
