@@ -1,3 +1,4 @@
+using BlueMystic;
 using Narod;
 using Narod.SteamGameFinder;
 using Newtonsoft.Json;
@@ -16,9 +17,13 @@ namespace FoundryModManager
         private int _currentSelectedConfiguration = -1;
         private bool _ignoreEvents = false;
 
+        private DarkModeCS _darkMode;
+
         public FormMain()
         {
             InitializeComponent();
+
+            _darkMode = new DarkModeCS(this);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -33,8 +38,10 @@ namespace FoundryModManager
 
             LoadRepositories();
 
-            _modsConfigurations = new List<ModsConfiguration>();
-            _modsConfigurations.Add(new ModsConfiguration("Vanilla", true, new string[0]));
+            _modsConfigurations = new List<ModsConfiguration>
+            {
+                new ModsConfiguration("Vanilla", true, new string[0])
+            };
 
             _configFilePath = Path.Combine(_dataFolderPath, @"configurations.json");
             if (File.Exists(_configFilePath))
@@ -73,7 +80,7 @@ namespace FoundryModManager
                 var steamGameLocator = new SteamGameLocator();
                 if (steamGameLocator.getIsSteamInstalled())
                 {
-                    var gameInfo = steamGameLocator.getGameInfoByFolder("FOUNDRY Demo");
+                    var gameInfo = steamGameLocator.getGameInfoByFolder("FOUNDRY");
                     if (!string.IsNullOrEmpty(gameInfo.steamGameLocation))
                     {
                         inputPath.Text = gameInfo.steamGameLocation.Replace(@"\\", @"\");
@@ -491,7 +498,7 @@ namespace FoundryModManager
 
             Process.Start(new ProcessStartInfo()
             {
-                FileName = "steam://run/2160290",
+                FileName = "steam://run/983870",
                 UseShellExecute = true
             });
         }

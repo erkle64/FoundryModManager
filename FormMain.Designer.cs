@@ -29,286 +29,281 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.panelButtons = new System.Windows.Forms.Panel();
-            this.buttonApplyAndRunSteamDemo = new System.Windows.Forms.Button();
-            this.buttonApplyAndRun = new System.Windows.Forms.Button();
-            this.buttonApply = new System.Windows.Forms.Button();
-            this.panelConfigurations = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonAddConfiguration = new System.Windows.Forms.Button();
-            this.buttonRemoveConfiguration = new System.Windows.Forms.Button();
-            this.listConfigurations = new System.Windows.Forms.ListBox();
-            this.labelConfigurations = new System.Windows.Forms.Label();
-            this.panelMods = new System.Windows.Forms.Panel();
-            this.buttonModHome = new System.Windows.Forms.Button();
-            this.listMods = new System.Windows.Forms.CheckedListBox();
-            this.labelMods = new System.Windows.Forms.Label();
-            this.panelPath = new System.Windows.Forms.Panel();
-            this.inputPath = new System.Windows.Forms.TextBox();
-            this.buttonBrowse = new System.Windows.Forms.Button();
-            this.labelPath = new System.Windows.Forms.Label();
-            this.openFileDialogFoundryExe = new System.Windows.Forms.OpenFileDialog();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panelButtons.SuspendLayout();
-            this.panelConfigurations.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panelMods.SuspendLayout();
-            this.panelPath.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.SuspendLayout();
+            panelButtons = new Panel();
+            buttonApplyAndRunSteamDemo = new Button();
+            buttonApplyAndRun = new Button();
+            buttonApply = new Button();
+            panelConfigurations = new Panel();
+            panel1 = new Panel();
+            buttonAddConfiguration = new Button();
+            buttonRemoveConfiguration = new Button();
+            listConfigurations = new ListBox();
+            labelConfigurations = new Label();
+            panelMods = new Panel();
+            buttonModHome = new Button();
+            listMods = new CheckedListBox();
+            labelMods = new Label();
+            panelPath = new Panel();
+            inputPath = new TextBox();
+            buttonBrowse = new Button();
+            labelPath = new Label();
+            openFileDialogFoundryExe = new OpenFileDialog();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            panelButtons.SuspendLayout();
+            panelConfigurations.SuspendLayout();
+            panel1.SuspendLayout();
+            panelMods.SuspendLayout();
+            panelPath.SuspendLayout();
+            statusStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // panelButtons
             // 
-            this.panelButtons.Controls.Add(this.buttonApplyAndRunSteamDemo);
-            this.panelButtons.Controls.Add(this.buttonApplyAndRun);
-            this.panelButtons.Controls.Add(this.buttonApply);
-            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelButtons.Location = new System.Drawing.Point(4, 342);
-            this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Padding = new System.Windows.Forms.Padding(5);
-            this.panelButtons.Size = new System.Drawing.Size(524, 48);
-            this.panelButtons.TabIndex = 0;
+            panelButtons.Controls.Add(buttonApplyAndRunSteamDemo);
+            panelButtons.Controls.Add(buttonApplyAndRun);
+            panelButtons.Controls.Add(buttonApply);
+            panelButtons.Dock = DockStyle.Bottom;
+            panelButtons.Location = new Point(4, 342);
+            panelButtons.Name = "panelButtons";
+            panelButtons.Padding = new Padding(5);
+            panelButtons.Size = new Size(524, 48);
+            panelButtons.TabIndex = 0;
             // 
             // buttonApplyAndRunSteamDemo
             // 
-            this.buttonApplyAndRunSteamDemo.AutoSize = true;
-            this.buttonApplyAndRunSteamDemo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonApplyAndRunSteamDemo.Location = new System.Drawing.Point(63, 5);
-            this.buttonApplyAndRunSteamDemo.Name = "buttonApplyAndRunSteamDemo";
-            this.buttonApplyAndRunSteamDemo.Size = new System.Drawing.Size(239, 38);
-            this.buttonApplyAndRunSteamDemo.TabIndex = 2;
-            this.buttonApplyAndRunSteamDemo.Text = "Apply and Run Foundry Demo with Steam";
-            this.buttonApplyAndRunSteamDemo.UseVisualStyleBackColor = true;
-            this.buttonApplyAndRunSteamDemo.Click += new System.EventHandler(this.buttonApplyAndRunSteamDemo_Click);
+            buttonApplyAndRunSteamDemo.AutoSize = true;
+            buttonApplyAndRunSteamDemo.Dock = DockStyle.Right;
+            buttonApplyAndRunSteamDemo.Location = new Point(63, 5);
+            buttonApplyAndRunSteamDemo.Name = "buttonApplyAndRunSteamDemo";
+            buttonApplyAndRunSteamDemo.Size = new Size(239, 38);
+            buttonApplyAndRunSteamDemo.TabIndex = 2;
+            buttonApplyAndRunSteamDemo.Text = "Apply and Run Foundry with Steam";
+            buttonApplyAndRunSteamDemo.UseVisualStyleBackColor = true;
+            buttonApplyAndRunSteamDemo.Click += buttonApplyAndRunSteamDemo_Click;
             // 
             // buttonApplyAndRun
             // 
-            this.buttonApplyAndRun.AutoSize = true;
-            this.buttonApplyAndRun.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonApplyAndRun.Location = new System.Drawing.Point(302, 5);
-            this.buttonApplyAndRun.Name = "buttonApplyAndRun";
-            this.buttonApplyAndRun.Size = new System.Drawing.Size(142, 38);
-            this.buttonApplyAndRun.TabIndex = 1;
-            this.buttonApplyAndRun.Text = "Apply and Run Foundry";
-            this.buttonApplyAndRun.UseVisualStyleBackColor = true;
-            this.buttonApplyAndRun.Click += new System.EventHandler(this.buttonApplyAndRun_Click);
+            buttonApplyAndRun.AutoSize = true;
+            buttonApplyAndRun.Dock = DockStyle.Right;
+            buttonApplyAndRun.Location = new Point(302, 5);
+            buttonApplyAndRun.Name = "buttonApplyAndRun";
+            buttonApplyAndRun.Size = new Size(142, 38);
+            buttonApplyAndRun.TabIndex = 1;
+            buttonApplyAndRun.Text = "Apply and Run Foundry";
+            buttonApplyAndRun.UseVisualStyleBackColor = true;
+            buttonApplyAndRun.Click += buttonApplyAndRun_Click;
             // 
             // buttonApply
             // 
-            this.buttonApply.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonApply.Location = new System.Drawing.Point(444, 5);
-            this.buttonApply.Name = "buttonApply";
-            this.buttonApply.Size = new System.Drawing.Size(75, 38);
-            this.buttonApply.TabIndex = 0;
-            this.buttonApply.Text = "Apply";
-            this.buttonApply.UseVisualStyleBackColor = true;
-            this.buttonApply.Click += new System.EventHandler(this.buttonApply_Click);
+            buttonApply.Dock = DockStyle.Right;
+            buttonApply.Location = new Point(444, 5);
+            buttonApply.Name = "buttonApply";
+            buttonApply.Size = new Size(75, 38);
+            buttonApply.TabIndex = 0;
+            buttonApply.Text = "Apply";
+            buttonApply.UseVisualStyleBackColor = true;
+            buttonApply.Click += buttonApply_Click;
             // 
             // panelConfigurations
             // 
-            this.panelConfigurations.Controls.Add(this.panel1);
-            this.panelConfigurations.Controls.Add(this.listConfigurations);
-            this.panelConfigurations.Controls.Add(this.labelConfigurations);
-            this.panelConfigurations.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelConfigurations.Location = new System.Drawing.Point(328, 54);
-            this.panelConfigurations.Name = "panelConfigurations";
-            this.panelConfigurations.Size = new System.Drawing.Size(200, 288);
-            this.panelConfigurations.TabIndex = 1;
+            panelConfigurations.Controls.Add(panel1);
+            panelConfigurations.Controls.Add(listConfigurations);
+            panelConfigurations.Controls.Add(labelConfigurations);
+            panelConfigurations.Dock = DockStyle.Right;
+            panelConfigurations.Location = new Point(328, 54);
+            panelConfigurations.Name = "panelConfigurations";
+            panelConfigurations.Size = new Size(200, 288);
+            panelConfigurations.TabIndex = 1;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.buttonAddConfiguration);
-            this.panel1.Controls.Add(this.buttonRemoveConfiguration);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 256);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 32);
-            this.panel1.TabIndex = 3;
+            panel1.Controls.Add(buttonAddConfiguration);
+            panel1.Controls.Add(buttonRemoveConfiguration);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 256);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(200, 32);
+            panel1.TabIndex = 3;
             // 
             // buttonAddConfiguration
             // 
-            this.buttonAddConfiguration.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonAddConfiguration.Location = new System.Drawing.Point(0, 0);
-            this.buttonAddConfiguration.Name = "buttonAddConfiguration";
-            this.buttonAddConfiguration.Size = new System.Drawing.Size(100, 32);
-            this.buttonAddConfiguration.TabIndex = 1;
-            this.buttonAddConfiguration.Text = "New Config";
-            this.buttonAddConfiguration.UseVisualStyleBackColor = true;
-            this.buttonAddConfiguration.Click += new System.EventHandler(this.buttonAddConfiguration_Click);
+            buttonAddConfiguration.Dock = DockStyle.Fill;
+            buttonAddConfiguration.Location = new Point(0, 0);
+            buttonAddConfiguration.Name = "buttonAddConfiguration";
+            buttonAddConfiguration.Size = new Size(100, 32);
+            buttonAddConfiguration.TabIndex = 1;
+            buttonAddConfiguration.Text = "New Config";
+            buttonAddConfiguration.UseVisualStyleBackColor = true;
+            buttonAddConfiguration.Click += buttonAddConfiguration_Click;
             // 
             // buttonRemoveConfiguration
             // 
-            this.buttonRemoveConfiguration.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonRemoveConfiguration.Location = new System.Drawing.Point(100, 0);
-            this.buttonRemoveConfiguration.Name = "buttonRemoveConfiguration";
-            this.buttonRemoveConfiguration.Size = new System.Drawing.Size(100, 32);
-            this.buttonRemoveConfiguration.TabIndex = 0;
-            this.buttonRemoveConfiguration.Text = "Delete Config";
-            this.buttonRemoveConfiguration.UseVisualStyleBackColor = true;
-            this.buttonRemoveConfiguration.Click += new System.EventHandler(this.buttonRemoveConfiguration_Click);
+            buttonRemoveConfiguration.Dock = DockStyle.Right;
+            buttonRemoveConfiguration.Location = new Point(100, 0);
+            buttonRemoveConfiguration.Name = "buttonRemoveConfiguration";
+            buttonRemoveConfiguration.Size = new Size(100, 32);
+            buttonRemoveConfiguration.TabIndex = 0;
+            buttonRemoveConfiguration.Text = "Delete Config";
+            buttonRemoveConfiguration.UseVisualStyleBackColor = true;
+            buttonRemoveConfiguration.Click += buttonRemoveConfiguration_Click;
             // 
             // listConfigurations
             // 
-            this.listConfigurations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listConfigurations.FormattingEnabled = true;
-            this.listConfigurations.IntegralHeight = false;
-            this.listConfigurations.ItemHeight = 15;
-            this.listConfigurations.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
-            this.listConfigurations.Location = new System.Drawing.Point(0, 20);
-            this.listConfigurations.Name = "listConfigurations";
-            this.listConfigurations.Size = new System.Drawing.Size(200, 268);
-            this.listConfigurations.TabIndex = 2;
-            this.listConfigurations.SelectedIndexChanged += new System.EventHandler(this.listConfigurations_SelectedIndexChanged);
+            listConfigurations.Dock = DockStyle.Fill;
+            listConfigurations.FormattingEnabled = true;
+            listConfigurations.IntegralHeight = false;
+            listConfigurations.ItemHeight = 15;
+            listConfigurations.Items.AddRange(new object[] { "1", "2", "3" });
+            listConfigurations.Location = new Point(0, 20);
+            listConfigurations.Name = "listConfigurations";
+            listConfigurations.Size = new Size(200, 268);
+            listConfigurations.TabIndex = 2;
+            listConfigurations.SelectedIndexChanged += listConfigurations_SelectedIndexChanged;
             // 
             // labelConfigurations
             // 
-            this.labelConfigurations.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelConfigurations.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelConfigurations.Location = new System.Drawing.Point(0, 0);
-            this.labelConfigurations.Name = "labelConfigurations";
-            this.labelConfigurations.Size = new System.Drawing.Size(200, 20);
-            this.labelConfigurations.TabIndex = 1;
-            this.labelConfigurations.Text = "Configurations";
+            labelConfigurations.Dock = DockStyle.Top;
+            labelConfigurations.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            labelConfigurations.Location = new Point(0, 0);
+            labelConfigurations.Name = "labelConfigurations";
+            labelConfigurations.Size = new Size(200, 20);
+            labelConfigurations.TabIndex = 1;
+            labelConfigurations.Text = "Configurations";
             // 
             // panelMods
             // 
-            this.panelMods.Controls.Add(this.buttonModHome);
-            this.panelMods.Controls.Add(this.listMods);
-            this.panelMods.Controls.Add(this.labelMods);
-            this.panelMods.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMods.Location = new System.Drawing.Point(4, 54);
-            this.panelMods.Name = "panelMods";
-            this.panelMods.Size = new System.Drawing.Size(324, 288);
-            this.panelMods.TabIndex = 2;
+            panelMods.Controls.Add(buttonModHome);
+            panelMods.Controls.Add(listMods);
+            panelMods.Controls.Add(labelMods);
+            panelMods.Dock = DockStyle.Fill;
+            panelMods.Location = new Point(4, 54);
+            panelMods.Name = "panelMods";
+            panelMods.Size = new Size(324, 288);
+            panelMods.TabIndex = 2;
             // 
             // buttonModHome
             // 
-            this.buttonModHome.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonModHome.Location = new System.Drawing.Point(0, 256);
-            this.buttonModHome.Name = "buttonModHome";
-            this.buttonModHome.Size = new System.Drawing.Size(324, 32);
-            this.buttonModHome.TabIndex = 2;
-            this.buttonModHome.Text = "Open Selected Mod Homepage";
-            this.buttonModHome.UseVisualStyleBackColor = true;
-            this.buttonModHome.Click += new System.EventHandler(this.buttonModHome_Click);
+            buttonModHome.Dock = DockStyle.Bottom;
+            buttonModHome.Location = new Point(0, 256);
+            buttonModHome.Name = "buttonModHome";
+            buttonModHome.Size = new Size(324, 32);
+            buttonModHome.TabIndex = 2;
+            buttonModHome.Text = "Open Selected Mod Homepage";
+            buttonModHome.UseVisualStyleBackColor = true;
+            buttonModHome.Click += buttonModHome_Click;
             // 
             // listMods
             // 
-            this.listMods.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listMods.FormattingEnabled = true;
-            this.listMods.IntegralHeight = false;
-            this.listMods.Location = new System.Drawing.Point(0, 20);
-            this.listMods.Name = "listMods";
-            this.listMods.Size = new System.Drawing.Size(324, 268);
-            this.listMods.TabIndex = 1;
-            this.listMods.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listMods_ItemCheck);
+            listMods.Dock = DockStyle.Fill;
+            listMods.FormattingEnabled = true;
+            listMods.IntegralHeight = false;
+            listMods.Location = new Point(0, 20);
+            listMods.Name = "listMods";
+            listMods.Size = new Size(324, 268);
+            listMods.TabIndex = 1;
+            listMods.ItemCheck += listMods_ItemCheck;
             // 
             // labelMods
             // 
-            this.labelMods.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelMods.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelMods.Location = new System.Drawing.Point(0, 0);
-            this.labelMods.Name = "labelMods";
-            this.labelMods.Size = new System.Drawing.Size(324, 20);
-            this.labelMods.TabIndex = 0;
-            this.labelMods.Text = "Mods";
+            labelMods.Dock = DockStyle.Top;
+            labelMods.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            labelMods.Location = new Point(0, 0);
+            labelMods.Name = "labelMods";
+            labelMods.Size = new Size(324, 20);
+            labelMods.TabIndex = 0;
+            labelMods.Text = "Mods";
             // 
             // panelPath
             // 
-            this.panelPath.Controls.Add(this.inputPath);
-            this.panelPath.Controls.Add(this.buttonBrowse);
-            this.panelPath.Controls.Add(this.labelPath);
-            this.panelPath.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelPath.Location = new System.Drawing.Point(4, 4);
-            this.panelPath.Name = "panelPath";
-            this.panelPath.Padding = new System.Windows.Forms.Padding(0, 0, 0, 7);
-            this.panelPath.Size = new System.Drawing.Size(524, 50);
-            this.panelPath.TabIndex = 3;
+            panelPath.Controls.Add(inputPath);
+            panelPath.Controls.Add(buttonBrowse);
+            panelPath.Controls.Add(labelPath);
+            panelPath.Dock = DockStyle.Top;
+            panelPath.Location = new Point(4, 4);
+            panelPath.Name = "panelPath";
+            panelPath.Padding = new Padding(0, 0, 0, 7);
+            panelPath.Size = new Size(524, 50);
+            panelPath.TabIndex = 3;
             // 
             // inputPath
             // 
-            this.inputPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inputPath.Location = new System.Drawing.Point(0, 20);
-            this.inputPath.Name = "inputPath";
-            this.inputPath.Size = new System.Drawing.Size(424, 23);
-            this.inputPath.TabIndex = 0;
+            inputPath.Dock = DockStyle.Fill;
+            inputPath.Location = new Point(0, 20);
+            inputPath.Name = "inputPath";
+            inputPath.Size = new Size(424, 23);
+            inputPath.TabIndex = 0;
             // 
             // buttonBrowse
             // 
-            this.buttonBrowse.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonBrowse.Location = new System.Drawing.Point(424, 20);
-            this.buttonBrowse.Name = "buttonBrowse";
-            this.buttonBrowse.Size = new System.Drawing.Size(100, 23);
-            this.buttonBrowse.TabIndex = 1;
-            this.buttonBrowse.Text = "Browse";
-            this.buttonBrowse.UseVisualStyleBackColor = true;
-            this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
+            buttonBrowse.Dock = DockStyle.Right;
+            buttonBrowse.Location = new Point(424, 20);
+            buttonBrowse.Name = "buttonBrowse";
+            buttonBrowse.Size = new Size(100, 23);
+            buttonBrowse.TabIndex = 1;
+            buttonBrowse.Text = "Browse";
+            buttonBrowse.UseVisualStyleBackColor = true;
+            buttonBrowse.Click += buttonBrowse_Click;
             // 
             // labelPath
             // 
-            this.labelPath.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelPath.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPath.Location = new System.Drawing.Point(0, 0);
-            this.labelPath.Name = "labelPath";
-            this.labelPath.Size = new System.Drawing.Size(524, 20);
-            this.labelPath.TabIndex = 2;
-            this.labelPath.Text = "Foundry Path";
+            labelPath.Dock = DockStyle.Top;
+            labelPath.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPath.Location = new Point(0, 0);
+            labelPath.Name = "labelPath";
+            labelPath.Size = new Size(524, 20);
+            labelPath.TabIndex = 2;
+            labelPath.Text = "Foundry Path";
             // 
             // openFileDialogFoundryExe
             // 
-            this.openFileDialogFoundryExe.DefaultExt = "exe";
-            this.openFileDialogFoundryExe.FileName = "Foundry.exe";
-            this.openFileDialogFoundryExe.Filter = "Foundry.exe|Foundry.exe|All Files|*.*";
-            this.openFileDialogFoundryExe.InitialDirectory = "C:\\";
-            this.openFileDialogFoundryExe.Title = "Locate Foundry.exe";
-            this.openFileDialogFoundryExe.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogFoundryExe_FileOk);
+            openFileDialogFoundryExe.DefaultExt = "exe";
+            openFileDialogFoundryExe.FileName = "Foundry.exe";
+            openFileDialogFoundryExe.Filter = "Foundry.exe|Foundry.exe|All Files|*.*";
+            openFileDialogFoundryExe.InitialDirectory = "C:\\";
+            openFileDialogFoundryExe.Title = "Locate Foundry.exe";
+            openFileDialogFoundryExe.FileOk += openFileDialogFoundryExe_FileOk;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(4, 390);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(524, 22);
-            this.statusStrip1.TabIndex = 4;
-            this.statusStrip1.Text = "statusStrip1";
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Location = new Point(4, 390);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(524, 22);
+            statusStrip1.TabIndex = 4;
+            statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 416);
-            this.Controls.Add(this.panelMods);
-            this.Controls.Add(this.panelConfigurations);
-            this.Controls.Add(this.panelButtons);
-            this.Controls.Add(this.panelPath);
-            this.Controls.Add(this.statusStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormMain";
-            this.Padding = new System.Windows.Forms.Padding(4);
-            this.Text = "Foundry Mod Manager";
-            this.Load += new System.EventHandler(this.FormMain_Load);
-            this.panelButtons.ResumeLayout(false);
-            this.panelButtons.PerformLayout();
-            this.panelConfigurations.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panelMods.ResumeLayout(false);
-            this.panelPath.ResumeLayout(false);
-            this.panelPath.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(532, 416);
+            Controls.Add(panelMods);
+            Controls.Add(panelConfigurations);
+            Controls.Add(panelButtons);
+            Controls.Add(panelPath);
+            Controls.Add(statusStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "FormMain";
+            Padding = new Padding(4);
+            Text = "Foundry Mod Manager";
+            Load += FormMain_Load;
+            panelButtons.ResumeLayout(false);
+            panelButtons.PerformLayout();
+            panelConfigurations.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panelMods.ResumeLayout(false);
+            panelPath.ResumeLayout(false);
+            panelPath.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
