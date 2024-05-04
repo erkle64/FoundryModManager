@@ -27,6 +27,15 @@
       ]
     },
     {
+      "name": "OreMultiplier",
+      "folder": "OreMultiplier",
+      "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.0/OreMultiplier.mod",
+      "home": "https://github.com/erkle64/OreMultiplier/",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "Embiggenator",
       "folder": "Embiggenator",
       "url": "https://github.com/erkle64/Embiggenator/releases/download/v1.2.0/Embiggenator.mod",
