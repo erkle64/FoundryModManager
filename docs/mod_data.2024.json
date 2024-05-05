@@ -36,6 +36,15 @@
       ]
     },
     {
+      "name": "FastMiner",
+      "folder": "FastMiner",
+      "url": "https://github.com/erkle64/FastMiner/releases/download/v1.1.0/FastMiner.mod",
+      "home": "https://github.com/erkle64/FastMiner/",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "Embiggenator",
       "folder": "Embiggenator",
       "url": "https://github.com/erkle64/Embiggenator/releases/download/v1.2.0/Embiggenator.mod",
