@@ -8,6 +8,7 @@
             public string? folder;
             public string? url;
             public string? home;
+            public string? config;
             public string[]? requirements;
 
             public override string ToString() => name ?? "unnamed";

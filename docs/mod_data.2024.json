@@ -5,6 +5,7 @@
       "folder": "A_Unfoundry",
       "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.2/Unfoundry.mod",
       "home": "https://github.com/erkle64/Unfoundry/",
+      "config": "erkle64.Unfoundry.ini",
       "requirements": [
       ]
     },
@@ -31,6 +32,7 @@
       "folder": "Duplicationer",
       "url": "https://github.com/erkle64/Duplicationer/releases/download/v0.4.1/Duplicationer.mod",
       "home": "https://github.com/erkle64/Duplicationer/",
+      "config": "erkle64.duplicationer.ini",
       "requirements": [
         "Unfoundry"
       ]
@@ -40,6 +42,7 @@
       "folder": "StackMultiplier",
       "url": "https://github.com/erkle64/StackMultiplier/releases/download/v0.1.2/StackMultiplier.mod",
       "home": "https://github.com/erkle64/StackMultiplier/",
+      "config": "erkle64.StackMultiplier.ini",
       "requirements": [
         "Unfoundry"
       ]
@@ -49,6 +52,7 @@
       "folder": "OreMultiplier",
       "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.2/OreMultiplier.mod",
       "home": "https://github.com/erkle64/OreMultiplier/",
+      "config": "erkle64.OreMultiplier.ini",
       "requirements": [
         "Unfoundry"
       ]
@@ -58,6 +62,7 @@
       "folder": "FastMiner",
       "url": "https://github.com/erkle64/FastMiner/releases/download/v1.1.0/FastMiner.mod",
       "home": "https://github.com/erkle64/FastMiner/",
+      "config": "erkle64.FastMiner.ini",
       "requirements": [
         "Unfoundry"
       ]
@@ -67,6 +72,7 @@
       "folder": "Embiggenator",
       "url": "https://github.com/erkle64/Embiggenator/releases/download/v1.2.0/Embiggenator.mod",
       "home": "https://github.com/erkle64/Embiggenator/",
+      "config": "erkle64.Embiggenator.ini",
       "requirements": [
         "Unfoundry"
       ]

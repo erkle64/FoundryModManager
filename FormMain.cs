@@ -4,6 +4,8 @@ using Narod.SteamGameFinder;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO.Compression;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace FoundryModManager
 {
@@ -16,6 +18,7 @@ namespace FoundryModManager
         private string? _configFilePath;
         private int _currentSelectedConfiguration = -1;
         private bool _ignoreEvents = false;
+        private string _textEditorPath = "";
 
         private DarkModeCS _darkMode;
 
@@ -37,7 +40,7 @@ namespace FoundryModManager
             if (!Directory.Exists(_cacheFolderPath)) Directory.CreateDirectory(_cacheFolderPath);
 
             var repositoriesLoaded = false;
-            while(!repositoriesLoaded)
+            while (!repositoriesLoaded)
             {
                 try
                 {
@@ -103,6 +106,11 @@ namespace FoundryModManager
                         inputPath.Text = gameInfo.steamGameLocation.Replace(@"\\", @"\");
                     }
                 }
+            }
+
+            if (!TryGetTextEditorExecutable(out _textEditorPath))
+            {
+                buttonModConfig.Enabled = false;
             }
         }
 
@@ -304,7 +312,7 @@ namespace FoundryModManager
 
         private void SelectConfiguration(string configurationName)
         {
-            Debug.Assert (_modsConfigurations != null);
+            Debug.Assert(_modsConfigurations != null);
 
             for (int configurationIndex = 0; configurationIndex < _modsConfigurations.Count; configurationIndex++)
             {
@@ -324,7 +332,7 @@ namespace FoundryModManager
             if (_currentSelectedConfiguration == configurationIndex) return;
             _currentSelectedConfiguration = configurationIndex;
 
-            Debug.Assert (_modsConfigurations != null);
+            Debug.Assert(_modsConfigurations != null);
 
             _ignoreEvents = true;
             listConfigurations.SelectedIndex = configurationIndex;
@@ -468,6 +476,90 @@ namespace FoundryModManager
             resultStream.CopyTo(fileStream);
         }
 
+        [DllImport("Shlwapi.dll", CharSet = CharSet.Unicode)]
+        public static extern uint AssocQueryString(
+            AssocF flags,
+            AssocStr str,
+            string pszAssoc,
+            string? pszExtra,
+            [Out] StringBuilder? pszOut,
+            ref uint pcchOut
+        );
+
+        [Flags]
+        public enum AssocF
+        {
+            None = 0,
+            Init_NoRemapCLSID = 0x1,
+            Init_ByExeName = 0x2,
+            Open_ByExeName = 0x2,
+            Init_DefaultToStar = 0x4,
+            Init_DefaultToFolder = 0x8,
+            NoUserSettings = 0x10,
+            NoTruncate = 0x20,
+            Verify = 0x40,
+            RemapRunDll = 0x80,
+            NoFixUps = 0x100,
+            IgnoreBaseClass = 0x200,
+            Init_IgnoreUnknown = 0x400,
+            Init_Fixed_ProgId = 0x800,
+            Is_Protocol = 0x1000,
+            Init_For_File = 0x2000
+        }
+
+        public enum AssocStr
+        {
+            Command = 1,
+            Executable,
+            FriendlyDocName,
+            FriendlyAppName,
+            NoOpen,
+            ShellNewValue,
+            DDECommand,
+            DDEIfExec,
+            DDEApplication,
+            DDETopic,
+            InfoTip,
+            QuickTip,
+            TileInfo,
+            ContentType,
+            DefaultIcon,
+            ShellExtension,
+            DropTarget,
+            DelegateExecute,
+            Supported_Uri_Protocols,
+            ProgID,
+            AppID,
+            AppPublisher,
+            AppIconReference,
+            Max
+        }
+
+        private bool TryGetTextEditorExecutable(out string textEditorPath)
+        {
+            const int S_OK = 0;
+            const int S_FALSE = 1;
+
+            uint length = 0;
+            uint ret = AssocQueryString(AssocF.None, AssocStr.Executable, ".txt", null, null, ref length);
+            if (ret != S_FALSE)
+            {
+                textEditorPath = string.Empty;
+                return false;
+            }
+
+            var sb = new StringBuilder((int)length);
+            ret = AssocQueryString(AssocF.None, AssocStr.Executable, ".txt", null, sb, ref length);
+            if (ret != S_OK)
+            {
+                textEditorPath = string.Empty;
+                return false;
+            }
+
+            textEditorPath = sb.ToString();
+            return true;
+        }
+
         private void listMods_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (_ignoreEvents) return;
@@ -507,7 +599,8 @@ namespace FoundryModManager
                 return;
             }
 
-            Process.Start(new ProcessStartInfo() {
+            Process.Start(new ProcessStartInfo()
+            {
                 FileName = exePath,
                 WorkingDirectory = inputPath.Text
             });
@@ -590,6 +683,39 @@ namespace FoundryModManager
                     UseShellExecute = true
                 });
             }
+        }
+
+        private void buttonModConfig_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(_textEditorPath))
+            {
+                MessageBox.Show(this, "Text editor not found!");
+                return;
+            }
+
+            var modIndex = listMods.SelectedIndex;
+            if (modIndex < 0) return;
+
+            Debug.Assert(_repositories != null);
+            Debug.Assert(_repositories.Length > modIndex);
+
+            var repository = _repositories[modIndex];
+            Debug.Assert(repository != null);
+
+            if (repository.config == null)
+            {
+                MessageBox.Show(this, "Selected mod has no config.");
+                return;
+            }
+
+            var configPath = Path.Combine(inputPath.Text, "Config", repository.config);
+            if (!File.Exists(configPath))
+            {
+                MessageBox.Show(this, "Config file not found!");
+                return;
+            }
+
+            Process.Start(_textEditorPath, configPath);
         }
     }
 }

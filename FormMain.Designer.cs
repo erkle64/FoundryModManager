@@ -34,12 +34,14 @@
             buttonApplyAndRun = new Button();
             buttonApply = new Button();
             panelConfigurations = new Panel();
-            panel1 = new Panel();
+            panelConfigurationButtons = new Panel();
             buttonAddConfiguration = new Button();
             buttonRemoveConfiguration = new Button();
             listConfigurations = new ListBox();
             labelConfigurations = new Label();
             panelMods = new Panel();
+            panelModButtons = new Panel();
+            buttonModConfig = new Button();
             buttonModHome = new Button();
             listMods = new CheckedListBox();
             labelMods = new Label();
@@ -52,8 +54,9 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             panelButtons.SuspendLayout();
             panelConfigurations.SuspendLayout();
-            panel1.SuspendLayout();
+            panelConfigurationButtons.SuspendLayout();
             panelMods.SuspendLayout();
+            panelModButtons.SuspendLayout();
             panelPath.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -107,7 +110,7 @@
             // 
             // panelConfigurations
             // 
-            panelConfigurations.Controls.Add(panel1);
+            panelConfigurations.Controls.Add(panelConfigurationButtons);
             panelConfigurations.Controls.Add(listConfigurations);
             panelConfigurations.Controls.Add(labelConfigurations);
             panelConfigurations.Dock = DockStyle.Right;
@@ -116,15 +119,15 @@
             panelConfigurations.Size = new Size(200, 288);
             panelConfigurations.TabIndex = 1;
             // 
-            // panel1
+            // panelConfigurationButtons
             // 
-            panel1.Controls.Add(buttonAddConfiguration);
-            panel1.Controls.Add(buttonRemoveConfiguration);
-            panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 256);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(200, 32);
-            panel1.TabIndex = 3;
+            panelConfigurationButtons.Controls.Add(buttonAddConfiguration);
+            panelConfigurationButtons.Controls.Add(buttonRemoveConfiguration);
+            panelConfigurationButtons.Dock = DockStyle.Bottom;
+            panelConfigurationButtons.Location = new Point(0, 256);
+            panelConfigurationButtons.Name = "panelConfigurationButtons";
+            panelConfigurationButtons.Size = new Size(200, 32);
+            panelConfigurationButtons.TabIndex = 3;
             // 
             // buttonAddConfiguration
             // 
@@ -173,7 +176,7 @@
             // 
             // panelMods
             // 
-            panelMods.Controls.Add(buttonModHome);
+            panelMods.Controls.Add(panelModButtons);
             panelMods.Controls.Add(listMods);
             panelMods.Controls.Add(labelMods);
             panelMods.Dock = DockStyle.Fill;
@@ -182,14 +185,44 @@
             panelMods.Size = new Size(324, 288);
             panelMods.TabIndex = 2;
             // 
+            // panelModButtons
+            // 
+            panelModButtons.AutoSize = true;
+            panelModButtons.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panelModButtons.Controls.Add(buttonModConfig);
+            panelModButtons.Controls.Add(buttonModHome);
+            panelModButtons.Dock = DockStyle.Bottom;
+            panelModButtons.Location = new Point(0, 256);
+            panelModButtons.MinimumSize = new Size(0, 32);
+            panelModButtons.Name = "panelModButtons";
+            panelModButtons.Size = new Size(324, 32);
+            panelModButtons.TabIndex = 4;
+            // 
+            // buttonModConfig
+            // 
+            buttonModConfig.AutoSize = true;
+            buttonModConfig.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonModConfig.Dock = DockStyle.Left;
+            buttonModConfig.Location = new Point(162, 0);
+            buttonModConfig.MinimumSize = new Size(162, 32);
+            buttonModConfig.Name = "buttonModConfig";
+            buttonModConfig.Size = new Size(162, 32);
+            buttonModConfig.TabIndex = 3;
+            buttonModConfig.Text = "Open Mod Config";
+            buttonModConfig.UseVisualStyleBackColor = true;
+            buttonModConfig.Click += buttonModConfig_Click;
+            // 
             // buttonModHome
             // 
-            buttonModHome.Dock = DockStyle.Bottom;
-            buttonModHome.Location = new Point(0, 256);
+            buttonModHome.AutoSize = true;
+            buttonModHome.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonModHome.Dock = DockStyle.Left;
+            buttonModHome.Location = new Point(0, 0);
+            buttonModHome.MinimumSize = new Size(162, 32);
             buttonModHome.Name = "buttonModHome";
-            buttonModHome.Size = new Size(324, 32);
+            buttonModHome.Size = new Size(162, 32);
             buttonModHome.TabIndex = 2;
-            buttonModHome.Text = "Open Selected Mod Homepage";
+            buttonModHome.Text = "Open Mod Homepage";
             buttonModHome.UseVisualStyleBackColor = true;
             buttonModHome.Click += buttonModHome_Click;
             // 
@@ -296,8 +329,11 @@
             panelButtons.ResumeLayout(false);
             panelButtons.PerformLayout();
             panelConfigurations.ResumeLayout(false);
-            panel1.ResumeLayout(false);
+            panelConfigurationButtons.ResumeLayout(false);
             panelMods.ResumeLayout(false);
+            panelMods.PerformLayout();
+            panelModButtons.ResumeLayout(false);
+            panelModButtons.PerformLayout();
             panelPath.ResumeLayout(false);
             panelPath.PerformLayout();
             statusStrip1.ResumeLayout(false);
@@ -325,9 +361,11 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private Button buttonApplyAndRunSteamDemo;
-        private Panel panel1;
+        private Panel panelConfigurationButtons;
         private Button buttonAddConfiguration;
         private Button buttonRemoveConfiguration;
         private Button buttonModHome;
+        private Button buttonModConfig;
+        private Panel panelModButtons;
     }
 }
