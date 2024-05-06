@@ -3,9 +3,18 @@
     {
       "name": "Unfoundry",
       "folder": "A_Unfoundry",
-      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.0/Unfoundry.mod",
+      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.1/Unfoundry.mod",
       "home": "https://github.com/erkle64/Unfoundry/",
       "requirements": [
+      ]
+    },
+    {
+      "name": "Configurator",
+      "folder": "Configurator",
+      "url": "https://github.com/erkle64/Configurator/releases/download/v0.1.0/Configurator.mod",
+      "home": "https://github.com/erkle64/Configurator/",
+      "requirements": [
+        "Unfoundry"
       ]
     },
     {
@@ -29,7 +38,7 @@
     {
       "name": "OreMultiplier",
       "folder": "OreMultiplier",
-      "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.1/OreMultiplier.mod",
+      "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.2/OreMultiplier.mod",
       "home": "https://github.com/erkle64/OreMultiplier/",
       "requirements": [
         "Unfoundry"
