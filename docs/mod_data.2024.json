@@ -36,6 +36,15 @@
       ]
     },
     {
+      "name": "StackMultiplier",
+      "folder": "StackMultiplier",
+      "url": "https://github.com/erkle64/StackMultiplier/releases/download/v0.1.0/StackMultiplier.mod",
+      "home": "https://github.com/erkle64/StackMultiplier/",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "OreMultiplier",
       "folder": "OreMultiplier",
       "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.2/OreMultiplier.mod",
