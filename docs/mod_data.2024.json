@@ -38,7 +38,7 @@
     {
       "name": "StackMultiplier",
       "folder": "StackMultiplier",
-      "url": "https://github.com/erkle64/StackMultiplier/releases/download/v0.1.0/StackMultiplier.mod",
+      "url": "https://github.com/erkle64/StackMultiplier/releases/download/v0.1.1/StackMultiplier.mod",
       "home": "https://github.com/erkle64/StackMultiplier/",
       "requirements": [
         "Unfoundry"
