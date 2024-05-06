@@ -3,7 +3,7 @@
     {
       "name": "Unfoundry",
       "folder": "A_Unfoundry",
-      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.1/Unfoundry.mod",
+      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.2/Unfoundry.mod",
       "home": "https://github.com/erkle64/Unfoundry/",
       "requirements": [
       ]
@@ -38,7 +38,7 @@
     {
       "name": "StackMultiplier",
       "folder": "StackMultiplier",
-      "url": "https://github.com/erkle64/StackMultiplier/releases/download/v0.1.1/StackMultiplier.mod",
+      "url": "https://github.com/erkle64/StackMultiplier/releases/download/v0.1.2/StackMultiplier.mod",
       "home": "https://github.com/erkle64/StackMultiplier/",
       "requirements": [
         "Unfoundry"
