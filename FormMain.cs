@@ -36,7 +36,24 @@ namespace FoundryModManager
             _cacheFolderPath = Path.Combine(_dataFolderPath, @"Cache");
             if (!Directory.Exists(_cacheFolderPath)) Directory.CreateDirectory(_cacheFolderPath);
 
-            LoadRepositories();
+            var repositoriesLoaded = false;
+            while(!repositoriesLoaded)
+            {
+                try
+                {
+                    LoadRepositories();
+                    repositoriesLoaded = true;
+                }
+                catch (Exception ex)
+                {
+                    var result = MessageBox.Show($"Error: {ex.Message}", "Failed to load repositories", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    if (result != DialogResult.Retry)
+                    {
+                        Application.Exit();
+                        return;
+                    }
+                }
+            }
 
             _modsConfigurations = new List<ModsConfiguration>
             {
@@ -203,7 +220,11 @@ namespace FoundryModManager
             using (var httpClient = new HttpClient())
             {
                 var task = Task.Run(() => httpClient.GetStringAsync("https://erkle64.github.io/FoundryModManager/sources.2024.json"));
-                task.Wait();
+                task.Wait(15000);
+                if (!task.IsCompleted)
+                {
+                    throw new Exception("Timeout while waiting for repository data.");
+                }
                 if (task.IsCompletedSuccessfully)
                 {
                     var json = task.Result;
