@@ -7,6 +7,10 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Title>Foundry Mod Manager 2024</Title>
+    <Version>0.4.1.0</Version>
+    <AssemblyVersion>0.4.1.0</AssemblyVersion>
+    <FileVersion>0.4.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
