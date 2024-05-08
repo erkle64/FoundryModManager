@@ -85,6 +85,15 @@
       "requirements": [
         "Unfoundry"
       ]
+    },
+    {
+      "name": "Tweakificator",
+      "folder": "Tweakificator",
+      "url": "https://github.com/erkle64/Tweakificator/releases/download/v2.0.0/Tweakificator.mod",
+      "home": "https://github.com/erkle64/Tweakificator/",
+      "requirements": [
+        "Unfoundry"
+      ]
     }
   ]
 }
