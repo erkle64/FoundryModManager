@@ -68,6 +68,16 @@
       ]
     },
     {
+      "name": "RapidPocketCrafting",
+      "folder": "RapidPocketCrafting",
+      "url": "https://github.com/erkle64/RapidPocketCrafting/releases/download/v0.1.0/RapidPocketCrafting.mod",
+      "home": "https://github.com/erkle64/RapidPocketCrafting/",
+      "config": "erkle64.RapidPocketCrafting.ini",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "Embiggenator",
       "folder": "Embiggenator",
       "url": "https://github.com/erkle64/Embiggenator/releases/download/v1.2.0/Embiggenator.mod",
