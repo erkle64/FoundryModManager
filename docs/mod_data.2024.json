@@ -50,7 +50,7 @@
     {
       "name": "OreMultiplier",
       "folder": "OreMultiplier",
-      "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.2/OreMultiplier.mod",
+      "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.3/OreMultiplier.mod",
       "home": "https://github.com/erkle64/OreMultiplier/",
       "config": "erkle64.OreMultiplier.ini",
       "requirements": [
