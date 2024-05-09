@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO.Compression;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FoundryModManager
 {
@@ -44,7 +45,7 @@ namespace FoundryModManager
             {
                 try
                 {
-                    LoadRepositories();
+                    LoadAllRepositories();
                     repositoriesLoaded = true;
                 }
                 catch (Exception ex)
@@ -221,50 +222,31 @@ namespace FoundryModManager
             }
         }
 
-        private void LoadRepositories()
+        private void LoadAllRepositories()
         {
             Debug.Assert(_cacheFolderPath != null);
+            Debug.Assert(_dataFolderPath != null);
 
-            using (var httpClient = new HttpClient())
+            var localPath = Path.Combine(_dataFolderPath, "sources.2024.json");
+            if (File.Exists(localPath))
             {
-                var task = Task.Run(() => httpClient.GetStringAsync("https://erkle64.github.io/FoundryModManager/sources.2024.json"));
-                task.Wait(15000);
-                if (!task.IsCompleted)
+                var json = File.ReadAllText(localPath);
+                LoadAllRepositoriesFromJSON(json);
+            }
+            else
+            {
+                using (var httpClient = new HttpClient())
                 {
-                    throw new Exception("Timeout while waiting for repository data.");
-                }
-                if (task.IsCompletedSuccessfully)
-                {
-                    var json = task.Result;
-                    var data = JsonConvert.DeserializeObject<SourcesData>(json);
-                    if (data != null && data.sources != null)
+                    var task = Task.Run(() => httpClient.GetStringAsync("https://erkle64.github.io/FoundryModManager/sources.2024.json"));
+                    task.Wait(15000);
+                    if (!task.IsCompleted)
                     {
-                        var sources = data.sources;
-
-                        var combinedRepositories = new List<RepositoryData.Entry>();
-                        foreach (var source in sources)
-                        {
-                            var repositories = LoadRepositoriesFrom(source);
-                            if (repositories != null)
-                            {
-                                combinedRepositories.AddRange(repositories);
-                            }
-                        }
-                        _repositories = combinedRepositories.ToArray();
-
-                        listMods.BeginUpdate();
-                        listMods.Items.Clear();
-                        foreach (var repository in _repositories)
-                        {
-                            if (repository.name != null)
-                            {
-                                listMods.Items.Add(repository);
-
-                                var cachePath = Path.Combine(_cacheFolderPath, repository.name);
-                                if (!Directory.Exists(cachePath)) Directory.CreateDirectory(cachePath);
-                            }
-                        }
-                        listMods.EndUpdate();
+                        throw new Exception("Timeout while waiting for repository data.");
+                    }
+                    if (task.IsCompletedSuccessfully)
+                    {
+                        var json = task.Result;
+                        LoadAllRepositoriesFromJSON(json);
                     }
                 }
             }
@@ -275,26 +257,79 @@ namespace FoundryModManager
             }
         }
 
+        private void LoadAllRepositoriesFromJSON(string json)
+        {
+            var data = JsonConvert.DeserializeObject<SourcesData>(json);
+            if (data != null && data.sources != null)
+            {
+                var sources = data.sources;
+
+                var combinedRepositories = new List<RepositoryData.Entry>();
+                foreach (var source in sources)
+                {
+                    var repositories = LoadRepositoriesFrom(source);
+                    if (repositories != null)
+                    {
+                        combinedRepositories.AddRange(repositories);
+                    }
+                }
+                _repositories = combinedRepositories.ToArray();
+
+                listMods.BeginUpdate();
+                listMods.Items.Clear();
+                foreach (var repository in _repositories)
+                {
+                    if (repository.name != null)
+                    {
+                        listMods.Items.Add(repository);
+
+                        var cachePath = Path.Combine(_cacheFolderPath, repository.name);
+                        if (!Directory.Exists(cachePath)) Directory.CreateDirectory(cachePath);
+                    }
+                }
+                listMods.EndUpdate();
+            }
+        }
+
         private RepositoryData.Entry[]? LoadRepositoriesFrom(string modDataURL)
         {
             Debug.Assert(_cacheFolderPath != null);
+            Debug.Assert(_dataFolderPath != null);
 
-            using (var httpClient = new HttpClient())
+            var localPath = Path.Combine(_dataFolderPath, Path.GetFileName(new Uri(modDataURL).AbsolutePath));
+            if (File.Exists(localPath))
             {
-                var task = Task.Run(() => httpClient.GetStringAsync(modDataURL));
-                task.Wait();
-                if (task.IsCompletedSuccessfully)
+                var json = File.ReadAllText(localPath);
+                return LoadRepositoriesFromJSON(json);
+            }
+            else
+            {
+                using (var httpClient = new HttpClient())
                 {
-                    var json = task.Result;
-                    var data = JsonConvert.DeserializeObject<RepositoryData>(json);
-                    if (data != null && data.repositories != null)
+                    var task = Task.Run(() => httpClient.GetStringAsync(modDataURL));
+                    task.Wait();
+                    if (task.IsCompletedSuccessfully)
                     {
-                        return data.repositories;
+                        var json = task.Result;
+                        return LoadRepositoriesFromJSON(json);
                     }
                 }
             }
 
             return null;
+        }
+
+        private static RepositoryData.Entry[] LoadRepositoriesFromJSON(string json)
+        {
+            var data = JsonConvert.DeserializeObject<RepositoryData>(json);
+            if (data != null && data.repositories != null)
+            {
+                return data.repositories;
+            }
+            else
+            {
+                throw new Exception("Invalid repository data.");
+            }
         }
 
         private void FillConfigurationsList()
