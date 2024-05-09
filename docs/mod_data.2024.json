@@ -58,6 +58,16 @@
       ]
     },
     {
+      "name": "FastResearch",
+      "folder": "FastResearch",
+      "url": "https://github.com/erkle64/FastResearch/releases/download/v0.1.0/FastResearch.mod",
+      "home": "https://github.com/erkle64/FastResearch/",
+      "config": "erkle64.FastResearch.ini",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "FastMiner",
       "folder": "FastMiner",
       "url": "https://github.com/erkle64/FastMiner/releases/download/v1.1.0/FastMiner.mod",
