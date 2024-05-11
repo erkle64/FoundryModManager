@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             panelButtons = new Panel();
             buttonApplyAndRunSteamDemo = new Button();
@@ -40,11 +41,12 @@
             listConfigurations = new ListBox();
             labelConfigurations = new Label();
             panelMods = new Panel();
+            listMods = new CheckedListBox();
+            labelMods = new Label();
             panelModButtons = new Panel();
             buttonModConfig = new Button();
             buttonModHome = new Button();
-            listMods = new CheckedListBox();
-            labelMods = new Label();
+            textBoxModInfo = new TextBox();
             panelPath = new Panel();
             inputPath = new TextBox();
             buttonBrowse = new Button();
@@ -52,6 +54,8 @@
             openFileDialogFoundryExe = new OpenFileDialog();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
+            toolTip = new ToolTip(components);
+            panelDescription = new Panel();
             panelButtons.SuspendLayout();
             panelConfigurations.SuspendLayout();
             panelConfigurationButtons.SuspendLayout();
@@ -59,6 +63,7 @@
             panelModButtons.SuspendLayout();
             panelPath.SuspendLayout();
             statusStrip1.SuspendLayout();
+            panelDescription.SuspendLayout();
             SuspendLayout();
             // 
             // panelButtons
@@ -67,7 +72,7 @@
             panelButtons.Controls.Add(buttonApplyAndRun);
             panelButtons.Controls.Add(buttonApply);
             panelButtons.Dock = DockStyle.Bottom;
-            panelButtons.Location = new Point(4, 342);
+            panelButtons.Location = new Point(4, 463);
             panelButtons.Name = "panelButtons";
             panelButtons.Padding = new Padding(5);
             panelButtons.Size = new Size(524, 48);
@@ -116,7 +121,7 @@
             panelConfigurations.Dock = DockStyle.Right;
             panelConfigurations.Location = new Point(328, 54);
             panelConfigurations.Name = "panelConfigurations";
-            panelConfigurations.Size = new Size(200, 288);
+            panelConfigurations.Size = new Size(200, 345);
             panelConfigurations.TabIndex = 1;
             // 
             // panelConfigurationButtons
@@ -124,7 +129,7 @@
             panelConfigurationButtons.Controls.Add(buttonAddConfiguration);
             panelConfigurationButtons.Controls.Add(buttonRemoveConfiguration);
             panelConfigurationButtons.Dock = DockStyle.Bottom;
-            panelConfigurationButtons.Location = new Point(0, 256);
+            panelConfigurationButtons.Location = new Point(0, 313);
             panelConfigurationButtons.Name = "panelConfigurationButtons";
             panelConfigurationButtons.Size = new Size(200, 32);
             panelConfigurationButtons.TabIndex = 3;
@@ -160,7 +165,7 @@
             listConfigurations.Items.AddRange(new object[] { "1", "2", "3" });
             listConfigurations.Location = new Point(0, 20);
             listConfigurations.Name = "listConfigurations";
-            listConfigurations.Size = new Size(200, 268);
+            listConfigurations.Size = new Size(200, 325);
             listConfigurations.TabIndex = 2;
             listConfigurations.SelectedIndexChanged += listConfigurations_SelectedIndexChanged;
             // 
@@ -176,14 +181,36 @@
             // 
             // panelMods
             // 
-            panelMods.Controls.Add(panelModButtons);
             panelMods.Controls.Add(listMods);
             panelMods.Controls.Add(labelMods);
+            panelMods.Controls.Add(panelModButtons);
             panelMods.Dock = DockStyle.Fill;
             panelMods.Location = new Point(4, 54);
             panelMods.Name = "panelMods";
-            panelMods.Size = new Size(324, 288);
+            panelMods.Size = new Size(324, 345);
             panelMods.TabIndex = 2;
+            // 
+            // listMods
+            // 
+            listMods.Dock = DockStyle.Fill;
+            listMods.FormattingEnabled = true;
+            listMods.IntegralHeight = false;
+            listMods.Location = new Point(0, 20);
+            listMods.Name = "listMods";
+            listMods.Size = new Size(324, 293);
+            listMods.TabIndex = 1;
+            listMods.ItemCheck += listMods_ItemCheck;
+            listMods.SelectedIndexChanged += listMods_SelectedIndexChanged;
+            // 
+            // labelMods
+            // 
+            labelMods.Dock = DockStyle.Top;
+            labelMods.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            labelMods.Location = new Point(0, 0);
+            labelMods.Name = "labelMods";
+            labelMods.Size = new Size(324, 20);
+            labelMods.TabIndex = 0;
+            labelMods.Text = "Mods";
             // 
             // panelModButtons
             // 
@@ -192,7 +219,7 @@
             panelModButtons.Controls.Add(buttonModConfig);
             panelModButtons.Controls.Add(buttonModHome);
             panelModButtons.Dock = DockStyle.Bottom;
-            panelModButtons.Location = new Point(0, 256);
+            panelModButtons.Location = new Point(0, 313);
             panelModButtons.MinimumSize = new Size(0, 32);
             panelModButtons.Name = "panelModButtons";
             panelModButtons.Size = new Size(324, 32);
@@ -226,26 +253,17 @@
             buttonModHome.UseVisualStyleBackColor = true;
             buttonModHome.Click += buttonModHome_Click;
             // 
-            // listMods
+            // textBoxModInfo
             // 
-            listMods.Dock = DockStyle.Fill;
-            listMods.FormattingEnabled = true;
-            listMods.IntegralHeight = false;
-            listMods.Location = new Point(0, 20);
-            listMods.Name = "listMods";
-            listMods.Size = new Size(324, 268);
-            listMods.TabIndex = 1;
-            listMods.ItemCheck += listMods_ItemCheck;
-            // 
-            // labelMods
-            // 
-            labelMods.Dock = DockStyle.Top;
-            labelMods.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            labelMods.Location = new Point(0, 0);
-            labelMods.Name = "labelMods";
-            labelMods.Size = new Size(324, 20);
-            labelMods.TabIndex = 0;
-            labelMods.Text = "Mods";
+            textBoxModInfo.AcceptsReturn = true;
+            textBoxModInfo.AcceptsTab = true;
+            textBoxModInfo.Dock = DockStyle.Fill;
+            textBoxModInfo.Location = new Point(5, 5);
+            textBoxModInfo.Multiline = true;
+            textBoxModInfo.Name = "textBoxModInfo";
+            textBoxModInfo.ReadOnly = true;
+            textBoxModInfo.Size = new Size(514, 54);
+            textBoxModInfo.TabIndex = 0;
             // 
             // panelPath
             // 
@@ -300,7 +318,7 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(4, 390);
+            statusStrip1.Location = new Point(4, 511);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(524, 22);
             statusStrip1.TabIndex = 4;
@@ -311,13 +329,25 @@
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(0, 17);
             // 
+            // panelDescription
+            // 
+            panelDescription.Controls.Add(textBoxModInfo);
+            panelDescription.Dock = DockStyle.Bottom;
+            panelDescription.Location = new Point(4, 399);
+            panelDescription.MinimumSize = new Size(0, 64);
+            panelDescription.Name = "panelDescription";
+            panelDescription.Padding = new Padding(5);
+            panelDescription.Size = new Size(524, 64);
+            panelDescription.TabIndex = 5;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(532, 416);
+            ClientSize = new Size(532, 537);
             Controls.Add(panelMods);
             Controls.Add(panelConfigurations);
+            Controls.Add(panelDescription);
             Controls.Add(panelButtons);
             Controls.Add(panelPath);
             Controls.Add(statusStrip1);
@@ -338,6 +368,8 @@
             panelPath.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            panelDescription.ResumeLayout(false);
+            panelDescription.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -367,5 +399,8 @@
         private Button buttonModHome;
         private Button buttonModConfig;
         private Panel panelModButtons;
+        private ToolTip toolTip;
+        private TextBox textBoxModInfo;
+        private Panel panelDescription;
     }
 }

@@ -1,12 +1,10 @@
 using BlueMystic;
-using Narod;
 using Narod.SteamGameFinder;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FoundryModManager
 {
@@ -22,6 +20,7 @@ namespace FoundryModManager
         private string _textEditorPath = "";
 
         private DarkModeCS _darkMode;
+        private int _ttIndex = -1;
 
         public FormMain()
         {
@@ -599,6 +598,25 @@ namespace FoundryModManager
         {
             if (_ignoreEvents) return;
             e.NewValue = ToggleMod(e.Index, e.NewValue == CheckState.Checked) ? CheckState.Checked : CheckState.Unchecked;
+        }
+
+        private void listMods_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var modIndex = listMods.SelectedIndex;
+
+            Debug.Assert(_modsConfigurations != null);
+            Debug.Assert(_repositories != null);
+            if (modIndex >= 0 && _repositories.Length > modIndex)
+            {
+                var repository = _repositories[modIndex];
+                Debug.Assert(repository != null);
+
+                textBoxModInfo.Text = $"Author: {repository.author ?? "unknown"}\r\nDescription: {repository.description ?? ""}";
+            }
+            else
+            {
+                textBoxModInfo.Text = string.Empty;
+            }
         }
 
         private void listConfigurations_SelectedIndexChanged(object sender, EventArgs e)

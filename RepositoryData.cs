@@ -9,6 +9,8 @@
             public string? url;
             public string? home;
             public string? config;
+            public string? author;
+            public string? description;
             public string[]? requirements;
 
             public override string ToString() => name ?? "unnamed";
