@@ -6,6 +6,8 @@
       "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.3/Unfoundry.mod",
       "home": "https://github.com/erkle64/Unfoundry/",
       "config": "erkle64.Unfoundry.ini",
+      "author": "erkle64",
+      "description": "Utility library for other mods",
       "requirements": [
       ]
     },
@@ -14,6 +16,8 @@
       "folder": "Configurator",
       "url": "https://github.com/erkle64/Configurator/releases/download/v0.1.0/Configurator.mod",
       "home": "https://github.com/erkle64/Configurator/",
+      "author": "erkle64",
+      "description": "Configure other mods with a GUI on the title screen.",
       "requirements": [
         "Unfoundry"
       ]
@@ -23,6 +27,8 @@
       "folder": "BulkDemolishTerrain",
       "url": "https://github.com/erkle64/BulkDemolishTerrain/releases/download/v1.3.1/BulkDemolishTerrain.mod",
       "home": "https://github.com/erkle64/BulkDemolishTerrain/",
+      "author": "erkle64",
+      "description": "Allows the bulk deconstruct tool (default Shift+F) to deconstruct terrain.",
       "requirements": [
         "Unfoundry"
       ]
@@ -33,6 +39,8 @@
       "url": "https://github.com/erkle64/Duplicationer/releases/download/v0.4.2/Duplicationer.mod",
       "home": "https://github.com/erkle64/Duplicationer/",
       "config": "erkle64.duplicationer.ini",
+      "author": "erkle64",
+      "description": "Bulk copy/paste/blueprints.",
       "requirements": [
         "Unfoundry"
       ]
@@ -43,6 +51,8 @@
       "url": "https://github.com/erkle64/StackMultiplier/releases/download/v0.1.2/StackMultiplier.mod",
       "home": "https://github.com/erkle64/StackMultiplier/",
       "config": "erkle64.StackMultiplier.ini",
+      "author": "erkle64",
+      "description": "Increases, or decreases, the stack size of all items.",
       "requirements": [
         "Unfoundry"
       ]
@@ -53,6 +63,8 @@
       "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.3/OreMultiplier.mod",
       "home": "https://github.com/erkle64/OreMultiplier/",
       "config": "erkle64.OreMultiplier.ini",
+      "author": "erkle64",
+      "description": "Increases, or decreases, the distribution and/or yield of ore patches and reservoirs.",
       "requirements": [
         "Unfoundry"
       ]
@@ -63,6 +75,8 @@
       "url": "https://github.com/erkle64/FastResearch/releases/download/v0.1.0/FastResearch.mod",
       "home": "https://github.com/erkle64/FastResearch/",
       "config": "erkle64.FastResearch.ini",
+      "author": "erkle64",
+      "description": "Increases, or decreases, the speed of research.",
       "requirements": [
         "Unfoundry"
       ]
@@ -73,6 +87,8 @@
       "url": "https://github.com/erkle64/FastMiner/releases/download/v1.1.0/FastMiner.mod",
       "home": "https://github.com/erkle64/FastMiner/",
       "config": "erkle64.FastMiner.ini",
+      "author": "erkle64",
+      "description": "Increases, or decreases, the speed of mining tools.",
       "requirements": [
         "Unfoundry"
       ]
@@ -83,6 +99,8 @@
       "url": "https://github.com/erkle64/RapidPocketCrafting/releases/download/v0.1.0/RapidPocketCrafting.mod",
       "home": "https://github.com/erkle64/RapidPocketCrafting/",
       "config": "erkle64.RapidPocketCrafting.ini",
+      "author": "erkle64",
+      "description": "Increases, or decreases, the speed of hand crafting.",
       "requirements": [
         "Unfoundry"
       ]
@@ -93,6 +111,8 @@
       "url": "https://github.com/erkle64/Embiggenator/releases/download/v1.2.0/Embiggenator.mod",
       "home": "https://github.com/erkle64/Embiggenator/",
       "config": "erkle64.Embiggenator.ini",
+      "author": "erkle64",
+      "description": "Increases the size of the player inventory.",
       "requirements": [
         "Unfoundry"
       ]
@@ -102,6 +122,8 @@
       "folder": "FoundryCommands",
       "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.2/FoundryCommands.mod",
       "home": "https://github.com/erkle64/FoundryCommands/",
+      "author": "erkle64",
+      "description": "Adds various commands to the chat window.",
       "requirements": [
         "Unfoundry"
       ]
@@ -111,6 +133,8 @@
       "folder": "Tweakificator",
       "url": "https://github.com/erkle64/Tweakificator/releases/download/v2.0.0/Tweakificator.mod",
       "home": "https://github.com/erkle64/Tweakificator/",
+      "author": "erkle64",
+      "description": "Allows the use of JSON files to change and/or add items, fluids, recipes, research, buildings etc.",
       "requirements": [
         "Unfoundry"
       ]
