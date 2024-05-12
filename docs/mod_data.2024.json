@@ -106,6 +106,18 @@
       ]
     },
     {
+      "name": "FastDroneMiners",
+      "folder": "FastDroneMiners",
+      "url": "https://github.com/erkle64/FastDroneMiners/releases/download/v0.1.0/FastDroneMiners.mod",
+      "home": "https://github.com/erkle64/FastDroneMiners/",
+      "config": "erkle64.FastDroneMiners.ini",
+      "author": "erkle64",
+      "description": "Increases, or decreases, the speed, capacity and charge of drone miners.",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "Embiggenator",
       "folder": "Embiggenator",
       "url": "https://github.com/erkle64/Embiggenator/releases/download/v1.2.0/Embiggenator.mod",
