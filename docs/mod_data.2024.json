@@ -60,11 +60,23 @@
     {
       "name": "OreMultiplier",
       "folder": "OreMultiplier",
-      "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.3/OreMultiplier.mod",
+      "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.4/OreMultiplier.mod",
       "home": "https://github.com/erkle64/OreMultiplier/",
       "config": "erkle64.OreMultiplier.ini",
       "author": "erkle64",
       "description": "Increases, or decreases, the distribution and/or yield of ore patches and reservoirs.",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
+      "name": "LazyCrafter",
+      "folder": "LazyCrafter",
+      "url": "https://github.com/erkle64/LazyCrafter/releases/download/v1.2.0/LazyCrafter.mod",
+      "home": "https://github.com/erkle64/LazyCrafter/",
+      "config": "erkle64.LazyCrafter.ini",
+      "author": "erkle64",
+      "description": "Automatically crafts items in the hotbar if you're holding shift(crafts 5) or shift+alt(crafts 50).",
       "requirements": [
         "Unfoundry"
       ]
