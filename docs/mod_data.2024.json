@@ -46,6 +46,18 @@
       ]
     },
     {
+      "name": "ZoomButton",
+      "folder": "ZoomButton",
+      "url": "https://github.com/erkle64/ZoomButton/releases/download/v0.1.0/ZoomButton.mod",
+      "home": "https://github.com/erkle64/ZoomButton/",
+      "config": "erkle64.ZoomButton.ini",
+      "author": "erkle64",
+      "description": "Press ` to zoom in 5x.",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "StackMultiplier",
       "folder": "StackMultiplier",
       "url": "https://github.com/erkle64/StackMultiplier/releases/download/v0.1.2/StackMultiplier.mod",
