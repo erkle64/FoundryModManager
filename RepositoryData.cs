@@ -7,6 +7,7 @@
             public string? name;
             public string? folder;
             public string? url;
+            public string? url_testbranch;
             public string? home;
             public string? config;
             public string? author;

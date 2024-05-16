@@ -17,6 +17,7 @@ namespace FoundryModManager
         private string? _configFilePath;
         private int _currentSelectedConfiguration = -1;
         private bool _ignoreEvents = false;
+        private bool _useTestBranch = false;
         private string _textEditorPath = "";
 
         private DarkModeCS _darkMode;
@@ -85,6 +86,8 @@ namespace FoundryModManager
                         FillConfigurationsList();
                         SelectConfiguration(data.currentSelectedConfiguration ?? "Vanilla");
                     }
+
+                    _useTestBranch = (data.testbranch == true);
                 }
             }
             else
@@ -94,6 +97,8 @@ namespace FoundryModManager
                 SelectConfiguration(1);
                 SaveConfigurations();
             }
+
+            checkBoxTestBranch.Checked = _useTestBranch;
 
             if (string.IsNullOrEmpty(inputPath.Text))
             {
@@ -165,7 +170,13 @@ namespace FoundryModManager
             Debug.Assert(_repositories[modIndex] != null);
 
             var modURL = _repositories[modIndex].url;
+            var baseModURL = _repositories[modIndex].url;
+            if (_useTestBranch && !string.IsNullOrWhiteSpace(_repositories[modIndex].url_testbranch))
+            {
+                modURL = _repositories[modIndex].url_testbranch;
+            }
             Debug.Assert(modURL != null);
+            Debug.Assert(baseModURL != null);
 
             var modName = _repositories[modIndex].name;
             Debug.Assert(modName != null);
@@ -179,7 +190,7 @@ namespace FoundryModManager
             var cachedModFolderPath = Path.Combine(_cacheFolderPath, modName);
             if (!Directory.Exists(cachedModFolderPath)) Directory.CreateDirectory(cachedModFolderPath);
 
-            var cachedModPath = Path.Combine(cachedModFolderPath, Path.GetFileName(modURL));
+            var cachedModPath = Path.Combine(cachedModFolderPath, Path.GetFileName(baseModURL));
             var cachedModSourcePath = Path.Combine(cachedModFolderPath, "source.url");
 
             if (File.Exists(cachedModPath))
@@ -201,7 +212,7 @@ namespace FoundryModManager
 
             if (!File.Exists(cachedModPath))
             {
-                toolStripStatusLabel1.Text = $"Downloading {Path.GetFileName(modURL)}";
+                toolStripStatusLabel1.Text = $"Downloading {Path.GetFileName(baseModURL)}";
                 statusStrip1.Refresh();
                 var task = Task.Run(() => DownloadFile(httpClient, modURL, cachedModPath));
                 task.Wait();
@@ -415,7 +426,8 @@ namespace FoundryModManager
             {
                 foundryFolder = inputPath.Text,
                 currentSelectedConfiguration = _modsConfigurations[_currentSelectedConfiguration].name,
-                configurations = entries.ToArray()
+                configurations = entries.ToArray(),
+                testbranch = _useTestBranch
             };
             var json = JsonConvert.SerializeObject(data);
             File.WriteAllText(_configFilePath, json);
@@ -769,6 +781,12 @@ namespace FoundryModManager
             }
 
             Process.Start(_textEditorPath, configPath);
+        }
+
+        private void checkBoxTestBranch_CheckedChanged(object sender, EventArgs e)
+        {
+            _useTestBranch = checkBoxTestBranch.Checked;
+            SaveConfigurations();
         }
     }
 }

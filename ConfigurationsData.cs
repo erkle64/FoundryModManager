@@ -12,5 +12,6 @@ namespace FoundryModManager
         public string? foundryFolder;
         public string? currentSelectedConfiguration;
         public Entry[]? configurations;
+        public bool? testbranch;
     }
 }

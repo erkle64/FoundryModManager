@@ -56,6 +56,7 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolTip = new ToolTip(components);
             panelDescription = new Panel();
+            checkBoxTestBranch = new CheckBox();
             panelButtons.SuspendLayout();
             panelConfigurations.SuspendLayout();
             panelConfigurationButtons.SuspendLayout();
@@ -267,6 +268,7 @@
             // 
             // panelPath
             // 
+            panelPath.Controls.Add(checkBoxTestBranch);
             panelPath.Controls.Add(inputPath);
             panelPath.Controls.Add(buttonBrowse);
             panelPath.Controls.Add(labelPath);
@@ -340,6 +342,18 @@
             panelDescription.Size = new Size(524, 64);
             panelDescription.TabIndex = 5;
             // 
+            // checkBoxTestBranch
+            // 
+            checkBoxTestBranch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            checkBoxTestBranch.AutoSize = true;
+            checkBoxTestBranch.Location = new Point(382, -1);
+            checkBoxTestBranch.Name = "checkBoxTestBranch";
+            checkBoxTestBranch.Size = new Size(142, 19);
+            checkBoxTestBranch.TabIndex = 3;
+            checkBoxTestBranch.Text = "FOUNDRY test branch";
+            checkBoxTestBranch.UseVisualStyleBackColor = true;
+            checkBoxTestBranch.CheckedChanged += checkBoxTestBranch_CheckedChanged;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -402,5 +416,6 @@
         private ToolTip toolTip;
         private TextBox textBoxModInfo;
         private Panel panelDescription;
+        private CheckBox checkBoxTestBranch;
     }
 }
