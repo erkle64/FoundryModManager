@@ -28,6 +28,7 @@
       "folder": "BulkDemolishTerrain",
       "url": "https://github.com/erkle64/BulkDemolishTerrain/releases/download/v1.3.4/BulkDemolishTerrain.mod",
       "home": "https://github.com/erkle64/BulkDemolishTerrain/",
+      "config": "erkle64.BulkDemolishTerrain.ini",
       "author": "erkle64",
       "description": "Allows the bulk deconstruct tool (default Shift+F) to deconstruct terrain.",
       "requirements": [
