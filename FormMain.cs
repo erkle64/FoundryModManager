@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO.Compression;
 using System.Runtime.InteropServices;
 using System.Text;
+using static System.Windows.Forms.AxHost;
 
 namespace FoundryModManager
 {
@@ -138,50 +139,50 @@ namespace FoundryModManager
             Debug.Assert(_repositories != null);
             for (int modIndex = 0; modIndex < _repositories.Length; modIndex++)
             {
-                if (IsModEnabled(modIndex))
+                var modName = _repositories[modIndex].name!;
+                if (IsModEnabled(modName))
                 {
-                    InstallMod(modIndex, modsPath, httpClient);
+                    InstallMod(modName, modsPath, httpClient);
                 }
                 else
                 {
-                    UninstallMod(modIndex, modsPath);
+                    UninstallMod(modName, modsPath);
                 }
             }
         }
 
-        private void UninstallMod(int modIndex, string modsPath)
+        private void UninstallMod(string modName, string modsPath)
         {
             Debug.Assert(_repositories != null);
-            Debug.Assert(_repositories.Length > modIndex);
-            Debug.Assert(_repositories[modIndex] != null);
 
-            var folderName = _repositories[modIndex].folder ?? _repositories[modIndex].name;
+            var mod = GetModByName(modName);
+            Debug.Assert(mod != null);
+
+            var folderName = mod.folder ?? mod.name;
             Debug.Assert(folderName != null);
 
             var modPath = Path.Combine(modsPath, folderName);
             if (Directory.Exists(modPath)) Directory.Delete(modPath, true);
         }
 
-        private void InstallMod(int modIndex, string modsPath, HttpClient httpClient)
+        private void InstallMod(string modName, string modsPath, HttpClient httpClient)
         {
             Debug.Assert(_cacheFolderPath != null);
             Debug.Assert(_repositories != null);
-            Debug.Assert(_repositories.Length > modIndex);
-            Debug.Assert(_repositories[modIndex] != null);
 
-            var modURL = _repositories[modIndex].url;
-            var baseModURL = _repositories[modIndex].url;
-            if (_useTestBranch && !string.IsNullOrWhiteSpace(_repositories[modIndex].url_testbranch))
+            var mod = GetModByName(modName);
+            Debug.Assert(mod != null);
+
+            var modURL = mod.url;
+            var baseModURL = mod.url;
+            if (_useTestBranch && !string.IsNullOrWhiteSpace(mod.url_testbranch))
             {
-                modURL = _repositories[modIndex].url_testbranch;
+                modURL = mod.url_testbranch;
             }
             Debug.Assert(modURL != null);
             Debug.Assert(baseModURL != null);
 
-            var modName = _repositories[modIndex].name;
-            Debug.Assert(modName != null);
-
-            var folderName = _repositories[modIndex].folder ?? modName;
+            var folderName = mod.folder ?? modName;
             Debug.Assert(folderName != null);
 
             var modPath = Path.Combine(modsPath, folderName);
@@ -400,11 +401,40 @@ namespace FoundryModManager
                 RepositoryData.Entry? repository = _repositories[modIndex];
                 if (repository != null && repository.name != null)
                 {
-                    _ignoreEvents = true;
-                    listMods.SetItemChecked(modIndex, currentConfiguration.IsModEnabled(repository.name));
-                    _ignoreEvents = false;
+                    SetModCheckBox(repository.name, currentConfiguration.IsModEnabled(repository.name));
                 }
             }
+        }
+
+        private void SetModCheckBox(string modName, bool state)
+        {
+            Debug.Assert(_repositories != null);
+
+            _ignoreEvents = true;
+            for (int modIndex = 0; modIndex < listMods.Items.Count; modIndex++)
+            {
+                if (((RepositoryData.Entry)listMods.Items[modIndex]).name == modName)
+                {
+                    listMods.SetItemChecked(modIndex, state);
+                    break;
+                }
+            }
+            _ignoreEvents = false;
+        }
+
+        private RepositoryData.Entry? GetModByName(string modName)
+        {
+            Debug.Assert(_repositories != null);
+
+            for (int modIndex = 0; modIndex < _repositories.Length; modIndex++)
+            {
+                if (_repositories[modIndex].name == modName)
+                {
+                    return _repositories[modIndex];
+                }
+            }
+
+            return null;
         }
 
         private void SaveConfigurations()
@@ -435,37 +465,17 @@ namespace FoundryModManager
 
         private bool ToggleMod(string modName, bool state)
         {
-            Debug.Assert(_repositories != null);
-
-            for (int modIndex = 0; modIndex < _repositories.Length; modIndex++)
-            {
-                RepositoryData.Entry? repository = _repositories[modIndex];
-                if (repository != null && repository.name == modName)
-                {
-                    return ToggleMod(modIndex, state);
-                }
-            }
-
-            return false;
-        }
-
-        private bool ToggleMod(int modIndex, bool state)
-        {
             Debug.Assert(_modsConfigurations != null);
             Debug.Assert(_repositories != null);
-            Debug.Assert(_repositories.Length > modIndex);
 
-            var repository = _repositories[modIndex];
-            Debug.Assert(repository != null);
-
-            string? modName = repository.name;
             if (modName != null)
             {
+                var repository = GetModByName(modName);
+                if (repository == null) return false;
+
                 var isEnabled = _modsConfigurations[_currentSelectedConfiguration].ToggleMod(modName, state);
 
-                _ignoreEvents = true;
-                listMods.SetItemChecked(modIndex, isEnabled);
-                _ignoreEvents = false;
+                SetModCheckBox(modName, isEnabled);
 
                 if (repository.requirements != null)
                 {
@@ -496,16 +506,10 @@ namespace FoundryModManager
             return false;
         }
 
-        private bool IsModEnabled(int modIndex)
+        private bool IsModEnabled(string modName)
         {
             Debug.Assert(_modsConfigurations != null);
-            Debug.Assert(_repositories != null);
-            Debug.Assert(_repositories.Length > modIndex);
 
-            var repository = _repositories[modIndex];
-            Debug.Assert(repository != null);
-
-            string? modName = repository.name;
             if (modName != null)
             {
                 return _modsConfigurations[_currentSelectedConfiguration].IsModEnabled(modName);
@@ -609,7 +613,7 @@ namespace FoundryModManager
         private void listMods_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (_ignoreEvents) return;
-            e.NewValue = ToggleMod(e.Index, e.NewValue == CheckState.Checked) ? CheckState.Checked : CheckState.Unchecked;
+            e.NewValue = ToggleMod(((RepositoryData.Entry)listMods.Items[e.Index]).name!, e.NewValue == CheckState.Checked) ? CheckState.Checked : CheckState.Unchecked;
         }
 
         private void listMods_SelectedIndexChanged(object sender, EventArgs e)
