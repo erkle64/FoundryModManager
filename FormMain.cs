@@ -618,16 +618,10 @@ namespace FoundryModManager
 
         private void listMods_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var modIndex = listMods.SelectedIndex;
-
-            Debug.Assert(_modsConfigurations != null);
-            Debug.Assert(_repositories != null);
-            if (modIndex >= 0 && _repositories.Length > modIndex)
+            if (listMods.SelectedIndex >= 0 && listMods.SelectedIndex < listMods.Items.Count)
             {
-                var repository = _repositories[modIndex];
-                Debug.Assert(repository != null);
-
-                textBoxModInfo.Text = $"Author: {repository.author ?? "unknown"}\r\nDescription: {repository.description ?? ""}";
+                var mod = GetModByName(((RepositoryData.Entry)listMods.Items[listMods.SelectedIndex]).name!);
+                textBoxModInfo.Text = $"Author: {mod!.author ?? "unknown"}\r\nDescription: {mod!.description ?? ""}";
             }
             else
             {
