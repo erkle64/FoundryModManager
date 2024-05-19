@@ -8,6 +8,7 @@
             public string? folder;
             public string? url;
             public string? url_testbranch;
+            public Dictionary<string, string>? versions;
             public string? home;
             public string? config;
             public string? author;

@@ -400,7 +400,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormMain";
             Padding = new Padding(4);
-            Text = "Foundry Mod Manager v0.4.6";
+            Text = "Foundry Mod Manager v0.4.7";
             Load += FormMain_Load;
             panelButtons.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);

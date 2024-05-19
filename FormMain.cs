@@ -134,6 +134,18 @@ namespace FoundryModManager
             var modsPath = Path.Combine(inputPath.Text, "Mods");
             if (!Directory.Exists(modsPath)) Directory.CreateDirectory(modsPath);
 
+            var versionPath = Path.Combine(inputPath.Text, "version.txt");
+            var version = string.Empty;
+            if (File.Exists(versionPath))
+            {
+                version = File.ReadAllText(versionPath);
+                if (!string.IsNullOrWhiteSpace(version))
+                {
+                    checkBoxTestBranch.Checked = _useTestBranch = version == "0.5.2.14748";
+                    SaveConfigurations();
+                }
+            }
+
             using var httpClient = new HttpClient();
 
             Debug.Assert(_repositories != null);
@@ -142,7 +154,7 @@ namespace FoundryModManager
                 var modName = _repositories[modIndex].name!;
                 if (IsModEnabled(modName))
                 {
-                    InstallMod(modName, modsPath, httpClient);
+                    InstallMod(modName, modsPath, httpClient, version);
                 }
                 else
                 {
@@ -165,7 +177,7 @@ namespace FoundryModManager
             if (Directory.Exists(modPath)) Directory.Delete(modPath, true);
         }
 
-        private void InstallMod(string modName, string modsPath, HttpClient httpClient)
+        private void InstallMod(string modName, string modsPath, HttpClient httpClient, string version)
         {
             Debug.Assert(_cacheFolderPath != null);
             Debug.Assert(_repositories != null);
@@ -179,6 +191,12 @@ namespace FoundryModManager
             {
                 modURL = mod.url_testbranch;
             }
+
+            if (!string.IsNullOrEmpty(version) && mod.versions != null && mod.versions.TryGetValue(version, out var versionURL))
+            {
+                modURL = versionURL;
+            }
+
             Debug.Assert(modURL != null);
             Debug.Assert(baseModURL != null);
 
@@ -728,16 +746,9 @@ namespace FoundryModManager
 
         private void buttonModHome_Click(object sender, EventArgs e)
         {
-            var modIndex = listMods.SelectedIndex;
-            if (modIndex < 0) return;
+            var mod = GetModByName(((RepositoryData.Entry)listMods.Items[listMods.SelectedIndex]).name!);
 
-            Debug.Assert(_repositories != null);
-            Debug.Assert(_repositories.Length > modIndex);
-
-            var repository = _repositories[modIndex];
-            Debug.Assert(repository != null);
-
-            string? modHome = repository.home;
+            string? modHome = mod!.home;
             if (!string.IsNullOrEmpty(modHome))
             {
                 Process.Start(new ProcessStartInfo()
@@ -756,22 +767,15 @@ namespace FoundryModManager
                 return;
             }
 
-            var modIndex = listMods.SelectedIndex;
-            if (modIndex < 0) return;
+            var mod = GetModByName(((RepositoryData.Entry)listMods.Items[listMods.SelectedIndex]).name!);
 
-            Debug.Assert(_repositories != null);
-            Debug.Assert(_repositories.Length > modIndex);
-
-            var repository = _repositories[modIndex];
-            Debug.Assert(repository != null);
-
-            if (repository.config == null)
+            if (mod!.config == null)
             {
                 MessageBox.Show(this, "Selected mod has no config.");
                 return;
             }
 
-            var configPath = Path.Combine(inputPath.Text, "Config", repository.config);
+            var configPath = Path.Combine(inputPath.Text, "Config", mod.config);
             if (!File.Exists(configPath))
             {
                 MessageBox.Show(this, "Config file not found!");
