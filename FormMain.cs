@@ -788,5 +788,15 @@ namespace FoundryModManager
             _useTestBranch = checkBoxTestBranch.Checked;
             SaveConfigurations();
         }
+
+        private void buttonTweaks_Click(object sender, EventArgs e)
+        {
+            var tweaksPath = Path.Combine(inputPath.Text, "tweaks");
+            using var dialog = new DialogTweaks(tweaksPath);
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                dialog.ApplyChanges();
+            }
+        }
     }
 }

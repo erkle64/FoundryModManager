@@ -31,9 +31,11 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             panelButtons = new Panel();
-            buttonApplyAndRunSteamDemo = new Button();
-            buttonApplyAndRun = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
             buttonApply = new Button();
+            buttonApplyAndRun = new Button();
+            buttonApplyAndRunSteamDemo = new Button();
+            buttonTweaks = new Button();
             panelConfigurations = new Panel();
             panelConfigurationButtons = new Panel();
             buttonAddConfiguration = new Button();
@@ -48,6 +50,7 @@
             buttonModHome = new Button();
             textBoxModInfo = new TextBox();
             panelPath = new Panel();
+            checkBoxTestBranch = new CheckBox();
             inputPath = new TextBox();
             buttonBrowse = new Button();
             labelPath = new Label();
@@ -56,8 +59,8 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolTip = new ToolTip(components);
             panelDescription = new Panel();
-            checkBoxTestBranch = new CheckBox();
             panelButtons.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             panelConfigurations.SuspendLayout();
             panelConfigurationButtons.SuspendLayout();
             panelMods.SuspendLayout();
@@ -69,9 +72,7 @@
             // 
             // panelButtons
             // 
-            panelButtons.Controls.Add(buttonApplyAndRunSteamDemo);
-            panelButtons.Controls.Add(buttonApplyAndRun);
-            panelButtons.Controls.Add(buttonApply);
+            panelButtons.Controls.Add(tableLayoutPanel1);
             panelButtons.Dock = DockStyle.Bottom;
             panelButtons.Location = new Point(4, 463);
             panelButtons.Name = "panelButtons";
@@ -79,40 +80,70 @@
             panelButtons.Size = new Size(524, 48);
             panelButtons.TabIndex = 0;
             // 
-            // buttonApplyAndRunSteamDemo
+            // tableLayoutPanel1
             // 
-            buttonApplyAndRunSteamDemo.AutoSize = true;
-            buttonApplyAndRunSteamDemo.Dock = DockStyle.Right;
-            buttonApplyAndRunSteamDemo.Location = new Point(63, 5);
-            buttonApplyAndRunSteamDemo.Name = "buttonApplyAndRunSteamDemo";
-            buttonApplyAndRunSteamDemo.Size = new Size(239, 38);
-            buttonApplyAndRunSteamDemo.TabIndex = 2;
-            buttonApplyAndRunSteamDemo.Text = "Apply and Run Foundry with Steam";
-            buttonApplyAndRunSteamDemo.UseVisualStyleBackColor = true;
-            buttonApplyAndRunSteamDemo.Click += buttonApplyAndRunSteamDemo_Click;
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel1.ColumnCount = 4;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.Controls.Add(buttonApply, 3, 0);
+            tableLayoutPanel1.Controls.Add(buttonApplyAndRun, 2, 0);
+            tableLayoutPanel1.Controls.Add(buttonApplyAndRunSteamDemo, 1, 0);
+            tableLayoutPanel1.Controls.Add(buttonTweaks, 0, 0);
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(524, 48);
+            tableLayoutPanel1.TabIndex = 4;
+            // 
+            // buttonApply
+            // 
+            buttonApply.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            buttonApply.Location = new Point(442, 3);
+            buttonApply.Name = "buttonApply";
+            buttonApply.Size = new Size(79, 42);
+            buttonApply.TabIndex = 0;
+            buttonApply.Text = "Apply";
+            buttonApply.UseVisualStyleBackColor = true;
+            buttonApply.Click += buttonApply_Click;
             // 
             // buttonApplyAndRun
             // 
+            buttonApplyAndRun.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             buttonApplyAndRun.AutoSize = true;
-            buttonApplyAndRun.Dock = DockStyle.Right;
-            buttonApplyAndRun.Location = new Point(302, 5);
+            buttonApplyAndRun.Location = new Point(294, 3);
             buttonApplyAndRun.Name = "buttonApplyAndRun";
-            buttonApplyAndRun.Size = new Size(142, 38);
+            buttonApplyAndRun.Size = new Size(142, 42);
             buttonApplyAndRun.TabIndex = 1;
             buttonApplyAndRun.Text = "Apply and Run Foundry";
             buttonApplyAndRun.UseVisualStyleBackColor = true;
             buttonApplyAndRun.Click += buttonApplyAndRun_Click;
             // 
-            // buttonApply
+            // buttonApplyAndRunSteamDemo
             // 
-            buttonApply.Dock = DockStyle.Right;
-            buttonApply.Location = new Point(444, 5);
-            buttonApply.Name = "buttonApply";
-            buttonApply.Size = new Size(75, 38);
-            buttonApply.TabIndex = 0;
-            buttonApply.Text = "Apply";
-            buttonApply.UseVisualStyleBackColor = true;
-            buttonApply.Click += buttonApply_Click;
+            buttonApplyAndRunSteamDemo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            buttonApplyAndRunSteamDemo.AutoSize = true;
+            buttonApplyAndRunSteamDemo.Location = new Point(84, 3);
+            buttonApplyAndRunSteamDemo.Name = "buttonApplyAndRunSteamDemo";
+            buttonApplyAndRunSteamDemo.Size = new Size(204, 42);
+            buttonApplyAndRunSteamDemo.TabIndex = 2;
+            buttonApplyAndRunSteamDemo.Text = "Apply and Run Foundry with Steam";
+            buttonApplyAndRunSteamDemo.UseVisualStyleBackColor = true;
+            buttonApplyAndRunSteamDemo.Click += buttonApplyAndRunSteamDemo_Click;
+            // 
+            // buttonTweaks
+            // 
+            buttonTweaks.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            buttonTweaks.Location = new Point(3, 3);
+            buttonTweaks.Name = "buttonTweaks";
+            buttonTweaks.Size = new Size(75, 42);
+            buttonTweaks.TabIndex = 3;
+            buttonTweaks.Text = "Toggle Tweaks";
+            buttonTweaks.UseVisualStyleBackColor = true;
+            buttonTweaks.Click += buttonTweaks_Click;
             // 
             // panelConfigurations
             // 
@@ -199,6 +230,7 @@
             listMods.Location = new Point(0, 20);
             listMods.Name = "listMods";
             listMods.Size = new Size(324, 293);
+            listMods.Sorted = true;
             listMods.TabIndex = 1;
             listMods.ItemCheck += listMods_ItemCheck;
             listMods.SelectedIndexChanged += listMods_SelectedIndexChanged;
@@ -279,6 +311,18 @@
             panelPath.Size = new Size(524, 50);
             panelPath.TabIndex = 3;
             // 
+            // checkBoxTestBranch
+            // 
+            checkBoxTestBranch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            checkBoxTestBranch.AutoSize = true;
+            checkBoxTestBranch.Location = new Point(382, -1);
+            checkBoxTestBranch.Name = "checkBoxTestBranch";
+            checkBoxTestBranch.Size = new Size(142, 19);
+            checkBoxTestBranch.TabIndex = 3;
+            checkBoxTestBranch.Text = "FOUNDRY test branch";
+            checkBoxTestBranch.UseVisualStyleBackColor = true;
+            checkBoxTestBranch.CheckedChanged += checkBoxTestBranch_CheckedChanged;
+            // 
             // inputPath
             // 
             inputPath.Dock = DockStyle.Fill;
@@ -342,18 +386,6 @@
             panelDescription.Size = new Size(524, 64);
             panelDescription.TabIndex = 5;
             // 
-            // checkBoxTestBranch
-            // 
-            checkBoxTestBranch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            checkBoxTestBranch.AutoSize = true;
-            checkBoxTestBranch.Location = new Point(382, -1);
-            checkBoxTestBranch.Name = "checkBoxTestBranch";
-            checkBoxTestBranch.Size = new Size(142, 19);
-            checkBoxTestBranch.TabIndex = 3;
-            checkBoxTestBranch.Text = "FOUNDRY test branch";
-            checkBoxTestBranch.UseVisualStyleBackColor = true;
-            checkBoxTestBranch.CheckedChanged += checkBoxTestBranch_CheckedChanged;
-            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -368,10 +400,11 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormMain";
             Padding = new Padding(4);
-            Text = "Foundry Mod Manager";
+            Text = "Foundry Mod Manager v0.4.6";
             Load += FormMain_Load;
             panelButtons.ResumeLayout(false);
-            panelButtons.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             panelConfigurations.ResumeLayout(false);
             panelConfigurationButtons.ResumeLayout(false);
             panelMods.ResumeLayout(false);
@@ -417,5 +450,7 @@
         private TextBox textBoxModInfo;
         private Panel panelDescription;
         private CheckBox checkBoxTestBranch;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Button buttonTweaks;
     }
 }
