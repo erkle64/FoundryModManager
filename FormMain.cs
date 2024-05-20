@@ -118,6 +118,8 @@ namespace FoundryModManager
             {
                 buttonModConfig.Enabled = false;
             }
+
+            panelButtons.Width = tableLayoutPanelButtons.Width = ClientSize.Width - Padding.Left - Padding.Right;
         }
 
         private void InstallCurrentConfiguration()
@@ -799,6 +801,16 @@ namespace FoundryModManager
             {
                 dialog.ApplyChanges();
             }
+        }
+
+        private void FormMain_Resize(object sender, EventArgs e)
+        {
+            panelButtons.Width = tableLayoutPanelButtons.Width = ClientSize.Width - Padding.Left - Padding.Right;
+        }
+
+        private void FormMain_Layout(object sender, LayoutEventArgs e)
+        {
+            panelButtons.Width = tableLayoutPanelButtons.Width = ClientSize.Width - Padding.Left - Padding.Right;
         }
     }
 }

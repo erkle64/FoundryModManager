@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             panelButtons = new Panel();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutPanelButtons = new TableLayoutPanel();
             buttonApply = new Button();
             buttonApplyAndRun = new Button();
             buttonApplyAndRunSteamDemo = new Button();
@@ -60,7 +60,7 @@
             toolTip = new ToolTip(components);
             panelDescription = new Panel();
             panelButtons.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanelButtons.SuspendLayout();
             panelConfigurations.SuspendLayout();
             panelConfigurationButtons.SuspendLayout();
             panelMods.SuspendLayout();
@@ -72,7 +72,7 @@
             // 
             // panelButtons
             // 
-            panelButtons.Controls.Add(tableLayoutPanel1);
+            panelButtons.Controls.Add(tableLayoutPanelButtons);
             panelButtons.Dock = DockStyle.Bottom;
             panelButtons.Location = new Point(4, 463);
             panelButtons.Name = "panelButtons";
@@ -80,31 +80,31 @@
             panelButtons.Size = new Size(524, 48);
             panelButtons.TabIndex = 0;
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanelButtons
             // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel1.ColumnCount = 4;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel1.Controls.Add(buttonApply, 3, 0);
-            tableLayoutPanel1.Controls.Add(buttonApplyAndRun, 2, 0);
-            tableLayoutPanel1.Controls.Add(buttonApplyAndRunSteamDemo, 1, 0);
-            tableLayoutPanel1.Controls.Add(buttonTweaks, 0, 0);
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(524, 48);
-            tableLayoutPanel1.TabIndex = 4;
+            tableLayoutPanelButtons.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanelButtons.ColumnCount = 4;
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanelButtons.Controls.Add(buttonApply, 3, 0);
+            tableLayoutPanelButtons.Controls.Add(buttonApplyAndRun, 2, 0);
+            tableLayoutPanelButtons.Controls.Add(buttonApplyAndRunSteamDemo, 1, 0);
+            tableLayoutPanelButtons.Controls.Add(buttonTweaks, 0, 0);
+            tableLayoutPanelButtons.Location = new Point(0, 0);
+            tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
+            tableLayoutPanelButtons.RowCount = 1;
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelButtons.Size = new Size(524, 48);
+            tableLayoutPanelButtons.TabIndex = 4;
             // 
             // buttonApply
             // 
             buttonApply.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonApply.Location = new Point(442, 3);
+            buttonApply.Location = new Point(421, 3);
             buttonApply.Name = "buttonApply";
-            buttonApply.Size = new Size(79, 42);
+            buttonApply.Size = new Size(100, 42);
             buttonApply.TabIndex = 0;
             buttonApply.Text = "Apply";
             buttonApply.UseVisualStyleBackColor = true;
@@ -114,9 +114,9 @@
             // 
             buttonApplyAndRun.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             buttonApplyAndRun.AutoSize = true;
-            buttonApplyAndRun.Location = new Point(294, 3);
+            buttonApplyAndRun.Location = new Point(264, 3);
             buttonApplyAndRun.Name = "buttonApplyAndRun";
-            buttonApplyAndRun.Size = new Size(142, 42);
+            buttonApplyAndRun.Size = new Size(151, 42);
             buttonApplyAndRun.TabIndex = 1;
             buttonApplyAndRun.Text = "Apply and Run Foundry";
             buttonApplyAndRun.UseVisualStyleBackColor = true;
@@ -126,9 +126,9 @@
             // 
             buttonApplyAndRunSteamDemo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             buttonApplyAndRunSteamDemo.AutoSize = true;
-            buttonApplyAndRunSteamDemo.Location = new Point(84, 3);
+            buttonApplyAndRunSteamDemo.Location = new Point(107, 3);
             buttonApplyAndRunSteamDemo.Name = "buttonApplyAndRunSteamDemo";
-            buttonApplyAndRunSteamDemo.Size = new Size(204, 42);
+            buttonApplyAndRunSteamDemo.Size = new Size(151, 42);
             buttonApplyAndRunSteamDemo.TabIndex = 2;
             buttonApplyAndRunSteamDemo.Text = "Apply and Run Foundry with Steam";
             buttonApplyAndRunSteamDemo.UseVisualStyleBackColor = true;
@@ -139,7 +139,7 @@
             buttonTweaks.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             buttonTweaks.Location = new Point(3, 3);
             buttonTweaks.Name = "buttonTweaks";
-            buttonTweaks.Size = new Size(75, 42);
+            buttonTweaks.Size = new Size(98, 42);
             buttonTweaks.TabIndex = 3;
             buttonTweaks.Text = "Toggle Tweaks";
             buttonTweaks.UseVisualStyleBackColor = true;
@@ -400,11 +400,13 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormMain";
             Padding = new Padding(4);
-            Text = "Foundry Mod Manager v0.4.7";
+            Text = "Foundry Mod Manager v0.4.8";
             Load += FormMain_Load;
+            Layout += FormMain_Layout;
+            Resize += FormMain_Resize;
             panelButtons.ResumeLayout(false);
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
+            tableLayoutPanelButtons.ResumeLayout(false);
+            tableLayoutPanelButtons.PerformLayout();
             panelConfigurations.ResumeLayout(false);
             panelConfigurationButtons.ResumeLayout(false);
             panelMods.ResumeLayout(false);
@@ -450,7 +452,7 @@
         private TextBox textBoxModInfo;
         private Panel panelDescription;
         private CheckBox checkBoxTestBranch;
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanelButtons;
         private Button buttonTweaks;
     }
 }
