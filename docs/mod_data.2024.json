@@ -63,6 +63,18 @@
       ]
     },
     {
+      "name": "FarPainter",
+      "folder": "FarPainter",
+      "url": "https://github.com/erkle64/FarPainter/releases/download/v0.1.0/FarPainter.mod",
+      "home": "https://github.com/erkle64/FarPainter/",
+      "config": "erkle64.FarPainter.ini",
+      "author": "erkle64",
+      "description": "Long range painting and bulk paint mode.",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "StackMultiplier",
       "folder": "StackMultiplier",
       "url": "https://github.com/erkle64/StackMultiplier/releases/download/v0.1.2/StackMultiplier.mod",
