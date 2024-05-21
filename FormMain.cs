@@ -271,18 +271,16 @@ namespace FoundryModManager
             }
             else
             {
-                using (var httpClient = new HttpClient())
+                using (var webClient = new WebClient())
                 {
-                    var task = Task.Run(() => httpClient.GetStringAsync("https://erkle64.github.io/FoundryModManager/sources.2024.json"));
-                    task.Wait(15000);
-                    if (!task.IsCompleted)
+                    try
                     {
-                        throw new Exception("Timeout while waiting for repository data.");
-                    }
-                    if (task.IsCompletedSuccessfully)
-                    {
-                        var json = task.Result;
+                        var json = webClient.DownloadString("https://erkle64.github.io/FoundryModManager/sources.2024.json");
                         LoadAllRepositoriesFromJSON(json);
+                    }
+                    catch (WebException ex)
+                    {
+                        MessageBox.Show(this, $"Failed to download repository sources.\n{ex.Message}");
                     }
                 }
             }
@@ -319,7 +317,7 @@ namespace FoundryModManager
                     {
                         listMods.Items.Add(repository);
 
-                        var cachePath = Path.Combine(_cacheFolderPath, repository.name);
+                        var cachePath = Path.Combine(_cacheFolderPath!, repository.name);
                         if (!Directory.Exists(cachePath)) Directory.CreateDirectory(cachePath);
                     }
                 }
@@ -340,14 +338,16 @@ namespace FoundryModManager
             }
             else
             {
-                using (var httpClient = new HttpClient())
+                using (var webClient = new WebClient())
                 {
-                    var task = Task.Run(() => httpClient.GetStringAsync(modDataURL));
-                    task.Wait();
-                    if (task.IsCompletedSuccessfully)
+                    try
                     {
-                        var json = task.Result;
+                        var json = webClient.DownloadString(modDataURL);
                         return LoadRepositoriesFromJSON(json);
+                    }
+                    catch (WebException ex)
+                    {
+                        MessageBox.Show(this, $"Failed to download repository sources.\n{ex.Message}");
                     }
                 }
             }
