@@ -3,6 +3,7 @@ using Narod.SteamGameFinder;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO.Compression;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using static System.Windows.Forms.AxHost;
@@ -118,8 +119,6 @@ namespace FoundryModManager
             {
                 buttonModConfig.Enabled = false;
             }
-
-            panelButtons.Width = tableLayoutPanelButtons.Width = ClientSize.Width - Padding.Left - Padding.Right;
         }
 
         private void InstallCurrentConfiguration()
@@ -148,7 +147,7 @@ namespace FoundryModManager
                 }
             }
 
-            using var httpClient = new HttpClient();
+            using var webClient = new WebClient();
 
             Debug.Assert(_repositories != null);
             for (int modIndex = 0; modIndex < _repositories.Length; modIndex++)
@@ -156,7 +155,7 @@ namespace FoundryModManager
                 var modName = _repositories[modIndex].name!;
                 if (IsModEnabled(modName))
                 {
-                    InstallMod(modName, modsPath, httpClient, version);
+                    InstallMod(modName, modsPath, webClient, version);
                 }
                 else
                 {
@@ -179,7 +178,7 @@ namespace FoundryModManager
             if (Directory.Exists(modPath)) Directory.Delete(modPath, true);
         }
 
-        private void InstallMod(string modName, string modsPath, HttpClient httpClient, string version)
+        private void InstallMod(string modName, string modsPath, WebClient webClient, string version)
         {
             Debug.Assert(_cacheFolderPath != null);
             Debug.Assert(_repositories != null);
@@ -235,12 +234,18 @@ namespace FoundryModManager
             {
                 toolStripStatusLabel1.Text = $"Downloading {Path.GetFileName(baseModURL)}";
                 statusStrip1.Refresh();
-                var task = Task.Run(() => DownloadFile(httpClient, modURL, cachedModPath));
-                task.Wait();
+                try
+                {
+                    webClient.DownloadFile(modURL, cachedModPath);
+
+                    File.WriteAllText(cachedModSourcePath, modURL);
+                }
+                catch (WebException ex)
+                {
+                    MessageBox.Show(this, $"Failed to download {Path.GetFileName(baseModURL)}\n{ex.Message}");
+                }
                 toolStripStatusLabel1.Text = "";
                 statusStrip1.Refresh();
-
-                File.WriteAllText(cachedModSourcePath, modURL);
             }
 
             if (File.Exists(cachedModPath))
@@ -538,14 +543,6 @@ namespace FoundryModManager
             return false;
         }
 
-        private async Task DownloadFile(HttpClient httpClient, string fileUrl, string pathToSave)
-        {
-            var httpResult = await httpClient.GetAsync(fileUrl);
-            using var resultStream = await httpResult.Content.ReadAsStreamAsync();
-            using var fileStream = File.Create(pathToSave);
-            resultStream.CopyTo(fileStream);
-        }
-
         [DllImport("Shlwapi.dll", CharSet = CharSet.Unicode)]
         public static extern uint AssocQueryString(
             AssocF flags,
@@ -801,16 +798,6 @@ namespace FoundryModManager
             {
                 dialog.ApplyChanges();
             }
-        }
-
-        private void FormMain_Resize(object sender, EventArgs e)
-        {
-            panelButtons.Width = tableLayoutPanelButtons.Width = ClientSize.Width - Padding.Left - Padding.Right;
-        }
-
-        private void FormMain_Layout(object sender, LayoutEventArgs e)
-        {
-            panelButtons.Width = tableLayoutPanelButtons.Width = ClientSize.Width - Padding.Left - Padding.Right;
         }
     }
 }
