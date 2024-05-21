@@ -89,11 +89,11 @@
     {
       "name": "OreMultiplier",
       "folder": "OreMultiplier",
-      "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.5/OreMultiplier.mod",
+      "url": "https://github.com/erkle64/OreMultiplier/releases/download/v0.2.6/OreMultiplier.mod",
       "home": "https://github.com/erkle64/OreMultiplier/",
       "config": "erkle64.OreMultiplier.ini",
       "author": "erkle64",
-      "description": "Increases, or decreases, the distribution and/or yield of ore patches and reservoirs.",
+      "description": "Increases, or decreases, the distribution and/or yield of ore patches and reservoirs.  Cannot change parts of the map that have already been generated or add ore inside the starting area.",
       "requirements": [
         "Unfoundry"
       ]
