@@ -431,7 +431,7 @@
             MinimumSize = new Size(634, 421);
             Name = "FormMain";
             Padding = new Padding(5);
-            Text = "Foundry Mod Manager v0.4.10";
+            Text = "Foundry Mod Manager v0.4.11";
             Load += FormMain_Load;
             panelButtons.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);

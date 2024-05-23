@@ -142,7 +142,9 @@ namespace FoundryModManager
                 version = File.ReadAllText(versionPath);
                 if (!string.IsNullOrWhiteSpace(version))
                 {
-                    checkBoxTestBranch.Checked = _useTestBranch = version == "0.5.2.14748";
+                    var versionNumber = new Version(version);
+                    var testBranchVersion = new Version("0.5.2.14748");
+                    checkBoxTestBranch.Checked = _useTestBranch = versionNumber >= testBranchVersion;
                     SaveConfigurations();
                 }
             }
