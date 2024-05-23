@@ -8,6 +8,9 @@
         {
             InitializeComponent();
 
+            //folder is not always present - initial startup
+            if(!Directory.Exists(tweaksPath)) { Directory.CreateDirectory(tweaksPath); }
+
             _filePaths.Clear();
             checkedListBoxTweaks.Items.Clear();
             foreach (var filePath in Directory.EnumerateFiles(tweaksPath, "*.json*", SearchOption.TopDirectoryOnly))
