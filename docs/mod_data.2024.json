@@ -135,6 +135,18 @@
       ]
     },
     {
+      "name": "FastEscalators",
+      "folder": "FastEscalators",
+      "url": "https://github.com/erkle64/FastEscalators/releases/download/v0.1.0/FastEscalators.mod",
+      "home": "https://github.com/erkle64/FastEscalators/",
+      "config": "erkle64.FastEscalators.ini",
+      "author": "erkle64",
+      "description": "Increases the speed of escalators. Defaults to 4 times faster.",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "RapidPocketCrafting",
       "folder": "RapidPocketCrafting",
       "url": "https://github.com/erkle64/RapidPocketCrafting/releases/download/v0.1.0/RapidPocketCrafting.mod",
