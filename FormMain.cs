@@ -27,13 +27,12 @@ namespace FoundryModManager
 
         public FormMain()
         {
+            SplashScreen.ShowSplashScreen();
+
             InitializeComponent();
 
             _darkMode = new DarkModeCS(this);
-        }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
             var appdataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
             _dataFolderPath = Path.Combine(appdataPath, @"Erkle\FoundryModManager2024");
@@ -119,6 +118,8 @@ namespace FoundryModManager
             {
                 buttonModConfig.Enabled = false;
             }
+
+            SplashScreen.CloseSplashScreen();
         }
 
         private void InstallCurrentConfiguration()
@@ -234,7 +235,7 @@ namespace FoundryModManager
 
             if (!File.Exists(cachedModPath))
             {
-                toolStripStatusLabel1.Text = $"Downloading {Path.GetFileName(baseModURL)}";
+                toolStripStatusLabel1.Text = $"Downloading {Path.GetFileName(modURL)}";
                 statusStrip1.Refresh();
                 try
                 {
@@ -244,7 +245,7 @@ namespace FoundryModManager
                 }
                 catch (WebException ex)
                 {
-                    MessageBox.Show(this, $"Failed to download {Path.GetFileName(baseModURL)}\n{ex.Message}");
+                    MessageBox.Show(this, $"Failed to download {Path.GetFileName(modURL)}\n{ex.Message}");
                 }
                 toolStripStatusLabel1.Text = "";
                 statusStrip1.Refresh();

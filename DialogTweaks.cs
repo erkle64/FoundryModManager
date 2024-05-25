@@ -36,7 +36,7 @@
                     var isChecked = checkedListBoxTweaks.GetItemChecked(index);
                     if (wasChecked != isChecked)
                     {
-                        File.Move(filePath, Path.Combine(Path.GetDirectoryName(filePath)!, Path.GetFileNameWithoutExtension(filePath) + (isChecked ? ".json" : ".json.disabled")));
+                        File.Move(filePath, Path.Combine(Path.GetDirectoryName(filePath)!, Path.GetFileNameWithoutExtension(Path.GetFileNameWithoutExtension(Path.GetFileNameWithoutExtension(Path.GetFileNameWithoutExtension(filePath)))) + (isChecked ? ".json" : ".json.disabled")));
                     }
                 }
                 index++;
