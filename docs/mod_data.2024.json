@@ -3,11 +3,11 @@
     {
       "name": "Unfoundry",
       "folder": "A_Unfoundry",
-      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.5/Unfoundry.mod",
-      "url_testbranch": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.5/Unfoundry_testbranch.mod",
+      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.6/Unfoundry.mod",
+      "url_testbranch": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.6/Unfoundry_testbranch.mod",
       "versions": {
-        "0.5.2.14748": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.5/Unfoundry_testbranch.mod",
-        "0.5.2.14798": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.5/Unfoundry_testbranch.mod"
+        "0.5.2.14748": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.6/Unfoundry_testbranch.mod",
+        "0.5.2.14798": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.6/Unfoundry_testbranch.mod"
       },
       "home": "https://github.com/erkle64/Unfoundry/",
       "config": "erkle64.Unfoundry.ini",
@@ -42,11 +42,11 @@
     {
       "name": "Duplicationer",
       "folder": "Duplicationer",
-      "url": "https://github.com/erkle64/Duplicationer/releases/download/v0.4.7/Duplicationer.mod",
+      "url": "https://github.com/erkle64/Duplicationer/releases/download/v0.4.8/Duplicationer.mod",
       "home": "https://github.com/erkle64/Duplicationer/",
       "config": "erkle64.duplicationer.ini",
       "author": "erkle64",
-      "description": "Bulk copy/paste/blueprints.",
+      "description": "Bulk copy/paste blueprints.",
       "requirements": [
         "Unfoundry"
       ]
