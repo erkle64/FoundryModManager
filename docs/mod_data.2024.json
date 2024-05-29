@@ -3,12 +3,7 @@
     {
       "name": "Unfoundry",
       "folder": "A_Unfoundry",
-      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.6/Unfoundry.mod",
-      "url_testbranch": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.6/Unfoundry_testbranch.mod",
-      "versions": {
-        "0.5.2.14748": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.6/Unfoundry_testbranch.mod",
-        "0.5.2.14798": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.6/Unfoundry_testbranch.mod"
-      },
+      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.6/Unfoundry_testbranch.mod",
       "home": "https://github.com/erkle64/Unfoundry/",
       "config": "erkle64.Unfoundry.ini",
       "author": "erkle64",
@@ -66,8 +61,7 @@
     {
       "name": "FarPainter",
       "folder": "FarPainter",
-      "url": "https://github.com/erkle64/FarPainter/releases/download/v0.1.0/FarPainter_mainbranch.mod",
-      "url_testbranch": "https://github.com/erkle64/FarPainter/releases/download/v0.1.0/FarPainter_testbranch.mod",
+      "url": "https://github.com/erkle64/FarPainter/releases/download/v0.1.0/FarPainter_testbranch.mod",
       "home": "https://github.com/erkle64/FarPainter/",
       "config": "erkle64.FarPainter.ini",
       "author": "erkle64",
@@ -187,8 +181,7 @@
     {
       "name": "FoundryCommands",
       "folder": "FoundryCommands",
-      "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.4/FoundryCommands.mod",
-      "url_testbranch": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.5/FoundryCommands.mod",
+      "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.5/FoundryCommands.mod",
       "home": "https://github.com/erkle64/FoundryCommands/",
       "author": "erkle64",
       "description": "Adds various commands to the chat window.",
