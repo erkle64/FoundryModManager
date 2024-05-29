@@ -50,6 +50,7 @@
             buttonModHome = new Button();
             textBoxModInfo = new TextBox();
             panelPath = new Panel();
+            buttonOpenFolder = new Button();
             checkBoxTestBranch = new CheckBox();
             inputPath = new TextBox();
             buttonBrowse = new Button();
@@ -321,6 +322,7 @@
             // 
             // panelPath
             // 
+            panelPath.Controls.Add(buttonOpenFolder);
             panelPath.Controls.Add(checkBoxTestBranch);
             panelPath.Controls.Add(inputPath);
             panelPath.Controls.Add(buttonBrowse);
@@ -332,6 +334,17 @@
             panelPath.Padding = new Padding(0, 0, 0, 7);
             panelPath.Size = new Size(611, 58);
             panelPath.TabIndex = 3;
+            // 
+            // buttonOpenFolder
+            // 
+            buttonOpenFolder.Location = new Point(2, 23);
+            buttonOpenFolder.Margin = new Padding(2);
+            buttonOpenFolder.Name = "buttonOpenFolder";
+            buttonOpenFolder.Size = new Size(105, 28);
+            buttonOpenFolder.TabIndex = 4;
+            buttonOpenFolder.Text = "Open Folder";
+            buttonOpenFolder.UseVisualStyleBackColor = true;
+            buttonOpenFolder.Click += buttonOpenFolder_Click;
             // 
             // checkBoxTestBranch
             // 
@@ -348,16 +361,17 @@
             // 
             // inputPath
             // 
-            inputPath.Dock = DockStyle.Fill;
-            inputPath.Location = new Point(0, 23);
+            inputPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            inputPath.Location = new Point(111, 26);
             inputPath.Margin = new Padding(2);
             inputPath.Name = "inputPath";
-            inputPath.Size = new Size(494, 23);
+            inputPath.Size = new Size(379, 23);
             inputPath.TabIndex = 0;
+            inputPath.TextChanged += inputPath_TextChanged;
             // 
             // buttonBrowse
             // 
-            buttonBrowse.Dock = DockStyle.Right;
+            buttonBrowse.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             buttonBrowse.Location = new Point(494, 23);
             buttonBrowse.Margin = new Padding(2);
             buttonBrowse.Name = "buttonBrowse";
@@ -431,7 +445,8 @@
             MinimumSize = new Size(634, 421);
             Name = "FormMain";
             Padding = new Padding(5);
-            Text = "Foundry Mod Manager v0.4.12";
+            Text = "Foundry Mod Manager v0.4.13";
+            Shown += FormMain_Shown;
             panelButtons.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
@@ -482,5 +497,6 @@
         private CheckBox checkBoxTestBranch;
         private Button buttonTweaks;
         private TableLayoutPanel tableLayoutPanel1;
+        private Button buttonOpenFolder;
     }
 }

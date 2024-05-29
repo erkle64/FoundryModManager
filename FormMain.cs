@@ -1,6 +1,7 @@
 using BlueMystic;
 using Narod.SteamGameFinder;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Net;
@@ -27,11 +28,36 @@ namespace FoundryModManager
 
         public FormMain()
         {
-            SplashScreen.ShowSplashScreen();
 
             InitializeComponent();
 
             _darkMode = new DarkModeCS(this);
+
+            if (CheckForUpdate())
+            {
+                if (MessageBox.Show("Download new version?", "New Version Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    var targetDirectory = GetTemporaryDirectory();
+                    var targetPath = Path.Combine(targetDirectory, "FoundryModManagerSetup.msi");
+                    using var webClient = new WebClient();
+                    try
+                    {
+                        webClient.DownloadFile("https://github.com/erkle64/FoundryModManager/releases/latest/download/FoundryModManagerSetup.msi", targetPath);
+                        ProcessStartInfo processInfo = new ProcessStartInfo();
+                        processInfo.Arguments = @"/i  " + targetPath;
+                        processInfo.FileName = "msiexec";
+                        Process.Start(processInfo);
+                        Load += (s, e) => Close();
+                        return;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed to download update.");
+                    }
+                }
+            }
+
+            SplashScreen.ShowSplashScreen();
 
             var appdataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
@@ -120,6 +146,42 @@ namespace FoundryModManager
             }
 
             SplashScreen.CloseSplashScreen();
+        }
+
+        private string GetTemporaryDirectory()
+        {
+            string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+
+            if (File.Exists(tempDirectory))
+            {
+                return GetTemporaryDirectory();
+            }
+            else
+            {
+                Directory.CreateDirectory(tempDirectory);
+                return tempDirectory;
+            }
+        }
+
+        private bool CheckForUpdate()
+        {
+            try
+            {
+                if (!File.Exists("version.txt")) return false;
+                var currentVersionText = File.ReadAllText("version.txt");
+
+                using var webClient = new WebClient();
+                webClient.Headers.Add("User-Agent", "erkle64/FoundryModManager");
+                var jsonString = webClient.DownloadString("https://api.github.com/repos/erkle64/FoundryModManager/releases/latest");
+                var json = JObject.Parse(jsonString);
+                if (!json.TryGetValue("tag_name", out var latestVersionValue)) return false;
+                var latestVersionText = latestVersionValue.ToString();
+                return latestVersionText != currentVersionText;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private void InstallCurrentConfiguration()
@@ -748,6 +810,8 @@ namespace FoundryModManager
 
         private void buttonModHome_Click(object sender, EventArgs e)
         {
+            if (listMods.SelectedIndex < 0) return;
+
             var mod = GetModByName(((RepositoryData.Entry)listMods.Items[listMods.SelectedIndex]).name!);
 
             string? modHome = mod!.home;
@@ -763,6 +827,8 @@ namespace FoundryModManager
 
         private void buttonModConfig_Click(object sender, EventArgs e)
         {
+            if (listMods.SelectedIndex < 0) return;
+
             if (string.IsNullOrEmpty(_textEditorPath))
             {
                 MessageBox.Show(this, "Text editor not found!");
@@ -801,6 +867,25 @@ namespace FoundryModManager
             {
                 dialog.ApplyChanges();
             }
+        }
+
+        private void FormMain_Shown(object sender, EventArgs e)
+        {
+            Activate();
+        }
+
+        private void inputPath_TextChanged(object sender, EventArgs e)
+        {
+            buttonOpenFolder.Enabled = inputPath.Text.Length > 0 && Directory.Exists(inputPath.Text);
+        }
+
+        private void buttonOpenFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("explorer.exe", inputPath.Text);
+            }
+            catch { }
         }
     }
 }

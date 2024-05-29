@@ -31,15 +31,16 @@
             checkedListBoxTweaks = new CheckedListBox();
             buttonCancel = new Button();
             buttonAccept = new Button();
+            linkLabelLibrary = new LinkLabel();
             SuspendLayout();
             // 
             // checkedListBoxTweaks
             // 
             checkedListBoxTweaks.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             checkedListBoxTweaks.FormattingEnabled = true;
-            checkedListBoxTweaks.Location = new Point(12, 12);
+            checkedListBoxTweaks.Location = new Point(12, 30);
             checkedListBoxTweaks.Name = "checkedListBoxTweaks";
-            checkedListBoxTweaks.Size = new Size(460, 436);
+            checkedListBoxTweaks.Size = new Size(460, 418);
             checkedListBoxTweaks.TabIndex = 0;
             // 
             // buttonCancel
@@ -62,6 +63,17 @@
             buttonAccept.Text = "Accept";
             buttonAccept.UseVisualStyleBackColor = true;
             // 
+            // linkLabelLibrary
+            // 
+            linkLabelLibrary.AutoSize = true;
+            linkLabelLibrary.Location = new Point(12, 9);
+            linkLabelLibrary.Name = "linkLabelLibrary";
+            linkLabelLibrary.Size = new Size(295, 15);
+            linkLabelLibrary.TabIndex = 4;
+            linkLabelLibrary.TabStop = true;
+            linkLabelLibrary.Text = "Foundry Library Website: https://foundry.erkle64.com/";
+            linkLabelLibrary.LinkClicked += linkLabelLibrary_LinkClicked;
+            // 
             // DialogTweaks
             // 
             AcceptButton = buttonAccept;
@@ -69,12 +81,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = buttonCancel;
             ClientSize = new Size(484, 491);
+            Controls.Add(linkLabelLibrary);
             Controls.Add(buttonAccept);
             Controls.Add(buttonCancel);
             Controls.Add(checkedListBoxTweaks);
             Name = "DialogTweaks";
             Text = "Toggle Tweaks";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -82,5 +96,6 @@
         private CheckedListBox checkedListBoxTweaks;
         private Button buttonCancel;
         private Button buttonAccept;
+        private LinkLabel linkLabelLibrary;
     }
 }

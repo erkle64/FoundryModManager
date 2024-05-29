@@ -1,4 +1,6 @@
-﻿namespace FoundryModManager
+﻿using System.Diagnostics;
+
+namespace FoundryModManager
 {
     public partial class DialogTweaks : Form
     {
@@ -9,7 +11,7 @@
             InitializeComponent();
 
             //folder is not always present - initial startup
-            if(!Directory.Exists(tweaksPath)) { Directory.CreateDirectory(tweaksPath); }
+            if (!Directory.Exists(tweaksPath)) { Directory.CreateDirectory(tweaksPath); }
 
             _filePaths.Clear();
             checkedListBoxTweaks.Items.Clear();
@@ -41,6 +43,19 @@
                 }
                 index++;
             }
+        }
+
+        private void linkLabelLibrary_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "https://foundry.erkle64.com/",
+                    UseShellExecute = true
+                });
+            }
+            catch { }
         }
     }
 }
