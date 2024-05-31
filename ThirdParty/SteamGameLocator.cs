@@ -1,4 +1,5 @@
-﻿using System.Security;
+﻿using System.IO;
+using System.Security;
 
 namespace Narod
 {
@@ -40,7 +41,7 @@ namespace Narod
                     if (Directory.Exists(steamInstallPath) == false) { steamInstalled = false; return (bool)steamInstalled; } // if the folder location in the registry key is not on the system, then steam is not installed
                 }
                 catch (ArgumentNullException) { steamInstalled = false; return (bool)steamInstalled; } // unlikely to occur, but could be raised by safe registry returner, will return false as it would mean failed to find reg key
-                catch (SecurityException sx) { throw sx; } // security exception, means user needs more perms. will throw this exception back to the program to resolve
+                catch (SecurityException) { throw; } // security exception, means user needs more perms. will throw this exception back to the program to resolve
                 steamInstalled = true;
                 return (bool)steamInstalled; // if other 'guard if statements' are passed, then steam is accepted to be installed
             }
@@ -63,7 +64,7 @@ namespace Narod
                     if (Directory.Exists(steamInstallPath) == false) { throw new DirectoryNotFoundException(); } // if the folder location in the registry key is not on the system, then steam is not installed. throw directory not found exception
                 }
                 catch (ArgumentNullException) { throw new DirectoryNotFoundException(); } // unlikely to occur, but could be raised by safe registry returner, will return false as it would mean failed to find reg key
-                catch (SecurityException sx) { throw sx; } // security exception, means user needs more perms. will throw this exception back to the program to resolve
+                catch (SecurityException) { throw; } // security exception, means user needs more perms. will throw this exception back to the program to resolve
                 return steamInstallPath; // if other 'guard if statements' are passed, then steam is accepted to be installed
             }
 

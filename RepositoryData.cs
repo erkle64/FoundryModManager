@@ -1,4 +1,4 @@
-﻿namespace FoundryModManager
+﻿namespace FoundryModManager2024
 {
     public class RepositoryData
     {
@@ -7,7 +7,6 @@
             public string? name;
             public string? folder;
             public string? url;
-            public string? url_testbranch;
             public Dictionary<string, string>? versions;
             public string? home;
             public string? config;

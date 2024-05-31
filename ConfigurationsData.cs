@@ -1,5 +1,5 @@
 ﻿
-namespace FoundryModManager
+namespace FoundryModManager2024
 {
     public class ConfigurationsData
     {
@@ -10,8 +10,8 @@ namespace FoundryModManager
         }
 
         public string? foundryFolder;
+        public string? theme;
         public string? currentSelectedConfiguration;
         public Entry[]? configurations;
-        public bool? testbranch;
     }
 }

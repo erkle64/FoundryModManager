@@ -1,0 +1,20 @@
+﻿<Window x:Class="FoundryModManager2024.AddConfigurationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoundryModManager2024"
+        mc:Ignorable="d"
+        Title="Add Configuration" Height="Auto" Width="Auto" ResizeMode="NoResize" ShowInTaskbar="False" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" WindowStyle="None" Background="DarkGray">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="8,4,8,8">
+        <Label Content="Add Configuration" HorizontalContentAlignment="Left" FontSize="15" FontWeight="Bold" Padding="0,0,0,8" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Label Content="Name:" FontSize="14" />
+            <TextBox x:Name="NameTextBox" Width="300" FontSize="14" Padding="3" VerticalContentAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Ok" Width="100" Click="OkButton_Click" Margin="0,4,0,0" Padding="4" FontWeight="DemiBold" IsDefault="True"/>
+            <Button Content="Cancel" Width="100" Click="CancelButton_Click" Margin="4,4,0,0" Padding="4" IsCancel="True"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
