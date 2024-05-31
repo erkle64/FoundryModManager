@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoundryModManager2024"
         mc:Ignorable="d"
-        Title="Foundry Mod Manager 2024 v0.5.1"
+        Title="Foundry Mod Manager 2024 v0.5.2"
         Height="500" Width="800"
         MinHeight="300" MinWidth="440"
         WindowStyle="None"
@@ -143,9 +143,9 @@
                                     <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource NormalForeground}"/>
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="false">
-                                    <Setter Property="Background" TargetName="border" Value="{DynamicResource NormalBackground}"/>
-                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource NormalForeground}"/>
-                                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{DynamicResource NormalForeground}"/>
+                                    <Setter Property="Background" TargetName="border" Value="{DynamicResource DisabledBackground}"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource DisabledForeground}"/>
+                                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{DynamicResource DisabledForeground}"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -441,7 +441,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <!--App icon-->
                     <Image Source="/logo.png" Width="18" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <TextBlock Text="Foundry Mod Manager 2024 v0.5.1" Margin="4 3 0 0" Foreground="{DynamicResource TitleForeground}" FontWeight="DemiBold" />
+                    <TextBlock Text="Foundry Mod Manager 2024 v0.5.2" Margin="4 3 0 0" Foreground="{DynamicResource TitleForeground}" FontWeight="DemiBold" />
                 </StackPanel>
 
                 <!--Caption buttons-->
@@ -517,9 +517,9 @@
                                 <TextBlock Text="{Binding CurrentConfiguration.SelectedMod.Mod.Description}" Foreground="{DynamicResource NormalForeground}" Padding="4" TextWrapping="Wrap" />
                             </Border>
                             <StackPanel Grid.Column="1" Orientation="Vertical">
-                                <Button Content="Mod Homepage" Click="ModHomepageButton_Click" Margin="4" Padding="2" />
-                                <Button Content="Mod Config File" Click="ModConfigFileButton_Click" Margin="4" Padding="2" />
-                                <Button Content="Mod Folder" Click="ModFolderButton_Click" Margin="4" Padding="2" />
+                                <Button Content="Mod Homepage" Click="ModHomepageButton_Click" Margin="4" Padding="2" IsEnabled="{Binding Path=CurrentConfiguration.IsAnyModSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Button Content="Mod Config File" Click="ModConfigFileButton_Click" Margin="4" Padding="2" IsEnabled="{Binding Path=CurrentConfiguration.IsAnyModSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <Button Content="Mod Folder" Click="ModFolderButton_Click" Margin="4" Padding="2" IsEnabled="{Binding Path=CurrentConfiguration.IsAnyModSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
                         </Grid>
                         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">

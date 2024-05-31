@@ -29,8 +29,10 @@ namespace FoundryModManager2024
         public ModConfigurationViewModel? SelectedMod
         {
             get => _selectedMod;
-            set { _selectedMod = value; OnPropertyChanged(); }
+            set { _selectedMod = value; OnPropertyChanged(); OnPropertyChanged(nameof(IsAnyModSelected)); }
         }
+
+        public bool IsAnyModSelected => SelectedMod != null;
 
         public void UpdateDependencies(ModConfigurationViewModel modConfiguration, bool isEnabled)
         {

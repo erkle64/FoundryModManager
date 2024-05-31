@@ -5,6 +5,8 @@
     <SolidColorBrush x:Key="WindowBackground" Color="#333"/>
     <SolidColorBrush x:Key="NormalBackground" Color="Black"/>
     <SolidColorBrush x:Key="NormalForeground" Color="White"/>
+    <SolidColorBrush x:Key="DisabledBackground" Color="Black"/>
+    <SolidColorBrush x:Key="DisabledForeground" Color="DarkGray"/>
     <SolidColorBrush x:Key="HighlightColor" Color="DarkBlue"/>
     <SolidColorBrush x:Key="PressedColor" Color="Blue"/>
 </ResourceDictionary>
