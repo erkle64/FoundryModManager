@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,7 +32,21 @@ namespace FoundryModManager2024
 
         private bool _hasDoneVersionCheck = false;
 
-        public MainWindow(MainWindowViewModel viewModel, string dataFolderPath, string cacheFolderPath, string configFilePath, ModViewModel[] mods)
+        public struct WindowConfig
+        {
+            public double? Width;
+            public double? Height;
+            public bool? Maximized;
+        }
+
+        public enum InstallerType
+        {
+            MSI,
+            NET6,
+            Standalone
+        }
+
+        public MainWindow(MainWindowViewModel viewModel, string dataFolderPath, string cacheFolderPath, string configFilePath, ModViewModel[] mods, WindowConfig windowConfig)
         {
             _instance = this;
             _viewModel = viewModel;
@@ -48,6 +63,25 @@ namespace FoundryModManager2024
             InitializeComponent();
             StateChanged += MainWindowStateChangeRaised;
             DataContext = _viewModel;
+
+            if (windowConfig.Width != null)
+            {
+                Width = windowConfig.Width.Value;
+            }
+            if (windowConfig.Height != null)
+            {
+                Height = windowConfig.Height.Value;
+            }
+            if (windowConfig.Maximized != null)
+            {
+                if (windowConfig.Maximized.Value)
+                {
+                    WindowState = WindowState.Maximized;
+                    MainWindowBorder.BorderThickness = new Thickness(8);
+                    RestoreButton.Visibility = Visibility.Visible;
+                    MaximizeButton.Visibility = Visibility.Collapsed;
+                }
+            }
         }
 
         public static void DisableConfigUpdate() => _disableConfigUpdate++;
@@ -77,11 +111,15 @@ namespace FoundryModManager2024
             }
             data.configurations = configurations.ToArray();
 
-            var json = JsonConvert.SerializeObject(data);
+            data.windowWidth = _instance!.Width;
+            data.windowHeight = _instance!.Height;
+            data.windowMaximized = _instance!.WindowState == WindowState.Maximized;
+
+            var json = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(_instance._configFilePath, json);
         }
 
-        private bool CheckForUpdate(out string currentVersion, out string newVersion)
+        private bool CheckForUpdate(out string currentVersion, out string newVersion, out InstallerType installerType)
         {
             try
             {
@@ -91,6 +129,7 @@ namespace FoundryModManager2024
                 {
                     currentVersion = string.Empty;
                     newVersion = string.Empty;
+                    installerType = InstallerType.MSI;
                     return false;
                 }
                 var currentVersionText = File.ReadAllText(versionPath);
@@ -103,8 +142,33 @@ namespace FoundryModManager2024
                 {
                     currentVersion = string.Empty;
                     newVersion = string.Empty;
+                    installerType = InstallerType.MSI;
                     return false;
                 }
+
+                var installerTypePath = Path.Combine(exePath, "installer_type.txt");
+                if (File.Exists(installerTypePath))
+                {
+                    switch (File.ReadAllText(installerTypePath).ToLower())
+                    {
+                        case "net6":
+                            installerType = InstallerType.NET6;
+                            break;
+
+                        case "standalone":
+                            installerType = InstallerType.Standalone;
+                            break;
+
+                        default:
+                            installerType = InstallerType.MSI;
+                            break;
+                    }
+                }
+                else
+                {
+                    installerType = InstallerType.MSI;
+                }
+
                 var latestVersionText = latestVersionValue.ToString();
                 currentVersion = currentVersionText;
                 newVersion = latestVersionText;
@@ -114,6 +178,7 @@ namespace FoundryModManager2024
             {
                 currentVersion = string.Empty;
                 newVersion = string.Empty;
+                installerType = InstallerType.MSI;
                 return false;
             }
         }
@@ -639,19 +704,41 @@ namespace FoundryModManager2024
 
             _hasDoneVersionCheck = true;
 
-            if (CheckForUpdate(out var currentVersion, out var newVersion))
+            if (CheckForUpdate(out var currentVersion, out var newVersion, out var installerType))
             {
-                if (MessageBox.Show($"Current version: {currentVersion}\r\nNew version: {newVersion}\r\nDownload new version?", "New Version Available", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                var downloadFilename = "FoundryModManagerSetup.msi";
+                switch (installerType)
+                {
+                    case InstallerType.NET6:
+                        downloadFilename = "FoundryModManager_net6.exe";
+                        break;
+
+                    case InstallerType.Standalone:
+                        downloadFilename = "FoundryModManager_standalone.exe";
+                        break;
+                }
+
+                if (MessageBox.Show($"Current version: {currentVersion}\r\nNew version: {newVersion}\r\nDownload {downloadFilename}?", "New Version Available", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     var targetDirectory = GetTemporaryDirectory();
-                    var targetPath = Path.Combine(targetDirectory, "FoundryModManagerSetup.msi");
+                    var targetPath = Path.Combine(targetDirectory, downloadFilename);
                     using var webClient = new WebClient();
                     try
                     {
-                        webClient.DownloadFile("https://github.com/erkle64/FoundryModManager/releases/latest/download/FoundryModManagerSetup.msi", targetPath);
+                        webClient.DownloadFile($"https://github.com/erkle64/FoundryModManager/releases/latest/download/{downloadFilename}", targetPath);
                         ProcessStartInfo processInfo = new ProcessStartInfo();
-                        processInfo.Arguments = @"/i  " + targetPath;
-                        processInfo.FileName = "msiexec";
+                        switch (installerType)
+                        {
+                            case InstallerType.MSI:
+                                processInfo.Arguments = @"/i  " + targetPath;
+                                processInfo.FileName = "msiexec";
+                                break;
+
+                            case InstallerType.NET6:
+                            case InstallerType.Standalone:
+                                processInfo.FileName = targetPath;
+                                break;
+                        }
                         Process.Start(processInfo);
                         Close();
                         return;
@@ -667,6 +754,11 @@ namespace FoundryModManager2024
         private void RefreshTweaksButton_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.LoadTweaks();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaveConfiguration();
         }
     }
 }

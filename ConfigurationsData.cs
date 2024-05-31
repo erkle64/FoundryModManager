@@ -13,5 +13,8 @@ namespace FoundryModManager2024
         public string? theme;
         public string? currentSelectedConfiguration;
         public Entry[]? configurations;
+        public double? windowWidth;
+        public double? windowHeight;
+        public bool? windowMaximized;
     }
 }

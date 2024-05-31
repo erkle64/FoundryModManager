@@ -66,11 +66,11 @@ namespace FoundryModManager2024
                 Versions = x.versions ?? new Dictionary<string, string>()
             }).ToArray();
             Array.Sort(mods, (x, y) => string.Compare(x.Name, y.Name, StringComparison.InvariantCultureIgnoreCase));
-            LoadConfig(configFilePath, viewModel, mods);
+            LoadConfig(configFilePath, viewModel, mods, out var windowConfig);
 
             return () =>
             {
-                MainWindow = new MainWindow(viewModel, dataFolderPath, cacheFolderPath, configFilePath, mods);
+                MainWindow = new MainWindow(viewModel, dataFolderPath, cacheFolderPath, configFilePath, mods, windowConfig);
                 MainWindow.Show();
             };
         }
@@ -190,7 +190,7 @@ namespace FoundryModManager2024
             }
         }
 
-        private void LoadConfig(string configFilePath, MainWindowViewModel viewModel, ModViewModel[] mods)
+        private void LoadConfig(string configFilePath, MainWindowViewModel viewModel, ModViewModel[] mods, out MainWindow.WindowConfig windowConfig)
         {
             var vanilla = new ModsConfigurationViewModel
             {
@@ -207,6 +207,8 @@ namespace FoundryModManager2024
                     IsEnabled = false
                 });
             }
+
+            windowConfig = new MainWindow.WindowConfig();
 
             if (File.Exists(configFilePath))
             {
@@ -266,6 +268,10 @@ namespace FoundryModManager2024
                     {
                         viewModel.CurrentConfiguration = viewModel.Configurations.FirstOrDefault();
                     }
+
+                    windowConfig.Width = data.windowWidth;
+                    windowConfig.Height = data.windowHeight;
+                    windowConfig.Maximized = data.windowMaximized;
                 }
             }
 

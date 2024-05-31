@@ -14,7 +14,7 @@
         WindowStartupLocation="CenterScreen"
         Icon="/logo.png"
         Activated="Window_Activated"
-        xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+        xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" Closing="Window_Closing">
 
     <Window.DataContext>
         <local:MainWindowViewModel/>
@@ -476,8 +476,9 @@
                             <ListBox Grid.Column="0" ItemsSource="{Binding Path=CurrentConfiguration.Mods}" VerticalAlignment="Stretch" Margin="0,0,0,1" Background="{DynamicResource NormalBackground}" Foreground="{DynamicResource NormalForeground}" SelectedItem="{Binding CurrentConfiguration.SelectedMod}" MouseDoubleClick="ModsListBox_MouseDoubleClick" BorderThickness="0">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel>
-                                            <CheckBox Content="{Binding Path=Mod.Name}" IsChecked="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource NormalForeground}" />
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                            <CheckBox IsChecked="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource NormalForeground}" />
+                                            <TextBlock Text="{Binding Path=Mod.Name}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
