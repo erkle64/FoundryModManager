@@ -59,6 +59,18 @@
       ]
     },
     {
+      "name": "InventorySortOrder",
+      "folder": "InventorySortOrder",
+      "url": "https://github.com/erkle64/InventorySortOrder/releases/download/v0.1.0/InventorySortOrder.mod",
+      "home": "https://github.com/erkle64/InventorySortOrder/",
+      "config": "",
+      "author": "erkle64",
+      "description": "Changes the inventory sort button to sort with the same order as the crafting frame.  Only affects the player inventory sorting.",
+      "requirements": [
+        "Unfoundry"
+      ]
+    },
+    {
       "name": "FarPainter",
       "folder": "FarPainter",
       "url": "https://github.com/erkle64/FarPainter/releases/download/v0.1.0/FarPainter_testbranch.mod",
@@ -192,7 +204,7 @@
     {
       "name": "Tweakificator",
       "folder": "Tweakificator",
-      "url": "https://github.com/erkle64/Tweakificator/releases/download/v2.1.0/Tweakificator.mod",
+      "url": "https://github.com/erkle64/Tweakificator/releases/download/v2.1.1/Tweakificator.mod",
       "home": "https://github.com/erkle64/Tweakificator/",
       "author": "erkle64",
       "description": "Allows the use of JSON files to change and/or add items, fluids, recipes, research, buildings etc.",

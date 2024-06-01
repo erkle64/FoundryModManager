@@ -724,26 +724,14 @@ namespace FoundryModManager2024
 
                 if (MessageBox.Show($"Current version: {currentVersion}\r\nNew version: {newVersion}\r\nDownload {downloadFilename}?", "New Version Available", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    var targetDirectory = GetTemporaryDirectory();
-                    var targetPath = Path.Combine(targetDirectory, downloadFilename);
                     using var webClient = new WebClient();
                     try
                     {
-                        webClient.DownloadFile($"https://github.com/erkle64/FoundryModManager/releases/latest/download/{downloadFilename}", targetPath);
-                        ProcessStartInfo processInfo = new ProcessStartInfo();
-                        switch (installerType)
+                        Process.Start(new ProcessStartInfo
                         {
-                            case InstallerType.MSI:
-                                processInfo.Arguments = @"/i  " + targetPath;
-                                processInfo.FileName = "msiexec";
-                                break;
-
-                            case InstallerType.NET6:
-                            case InstallerType.Standalone:
-                                processInfo.FileName = targetPath;
-                                break;
-                        }
-                        Process.Start(processInfo);
+                            FileName = $"https://github.com/erkle64/FoundryModManager/releases/latest/download/{downloadFilename}",
+                            UseShellExecute = true
+                        });
                         Close();
                         return;
                     }
