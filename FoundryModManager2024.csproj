@@ -8,7 +8,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
     <Title>Foundry Mod Manager 2024</Title>
-    <Version>0.5.2</Version>
+    <Version>0.5.3</Version>
     <Authors>Erkle</Authors>
     <PackageProjectUrl>https://github.com/erkle64/FoundryModManager</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>

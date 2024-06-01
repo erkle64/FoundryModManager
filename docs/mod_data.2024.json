@@ -181,7 +181,7 @@
     {
       "name": "Embiggenator",
       "folder": "Embiggenator",
-      "url": "https://github.com/erkle64/Embiggenator/releases/download/v1.2.0/Embiggenator.mod",
+      "url": "https://github.com/erkle64/Embiggenator/releases/download/v1.3.0/Embiggenator.mod",
       "home": "https://github.com/erkle64/Embiggenator/",
       "config": "erkle64.Embiggenator.ini",
       "author": "erkle64",
@@ -196,7 +196,7 @@
       "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.5/FoundryCommands.mod",
       "home": "https://github.com/erkle64/FoundryCommands/",
       "author": "erkle64",
-      "description": "Adds various commands to the chat window.",
+      "description": "Adds various commands to the chat window. Permanently affects inventory if the world is saved.",
       "requirements": [
         "Unfoundry"
       ]
