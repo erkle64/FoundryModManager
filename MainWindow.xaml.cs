@@ -534,6 +534,10 @@ namespace FoundryModManager2024
             });
         }
 
+
+       
+        
+
         private void ModConfigFileButton_Click(object sender, RoutedEventArgs e)
         {
             if (_viewModel.CurrentConfiguration == null) return;

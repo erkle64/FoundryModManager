@@ -4,6 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoundryModManager2024"
+        
+        xmlns:resx="clr-namespace:FoundryModManager2024.Resources.Translations"
+        
         mc:Ignorable="d"
         Title="Foundry Mod Manager 2024 v0.5.2"
         Height="500" Width="800"
@@ -503,8 +506,8 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="0" Content="Add" Click="AddConfigurationButton_Click" Margin="4" />
-                                    <Button Grid.Column="1" Content="Remove" Click="RemoveConfigurationButton_Click" Margin="4" />
+                                    <Button Grid.Column="0" Content="{x:Static resx:Translations.AddButton}" Click="AddConfigurationButton_Click" Margin="4" />
+                                    <Button Grid.Column="1" Content="{x:Static resx:Translations.RemoveButton}" Click="RemoveConfigurationButton_Click" Margin="4" />
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -523,9 +526,9 @@
                             </StackPanel>
                         </Grid>
                         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Content="Apply and run FOUNDRY with Steam" Click="ApplyRunSteamButton_Click" Margin="4" Padding="6" />
-                            <Button Content="Apply and run FOUNDRY" Click="ApplyRunButton_Click" Margin="4" Padding="6" />
-                            <Button Content="Apply" Click="ApplyButton_Click" Margin="4" Padding="6" />
+                            <Button Content="{x:Static resx:Translations.ApplyRunSteamButton}" Click="ApplyRunSteamButton_Click" Margin="4" Padding="6" />
+                            <Button Content="{x:Static resx:Translations.ApplyRun}" Click="ApplyRunButton_Click" Margin="4" Padding="6" />
+                            <Button Content="{x:Static resx:Translations.ApplyButton}" Click="ApplyButton_Click" Margin="4" Padding="6" />
                         </StackPanel>
                     </Grid>
                 </TabItem>
@@ -543,7 +546,7 @@
                             <TextBlock Grid.Column="0">
                                 <Hyperlink NavigateUri="https://foundry.erkle64.com/" RequestNavigate="Hyperlink_RequestNavigate">foundry.erkle64.com</Hyperlink>
                             </TextBlock>
-                            <Button Grid.Column="1" Content="Refresh" Click="RefreshTweaksButton_Click" Padding="3" />
+                            <Button Grid.Column="1" Content="{x:Static resx:Translations.RefreshButton}" Click="RefreshTweaksButton_Click" Padding="3" />
                         </Grid>
                         <ListBox Grid.Row="1" ItemsSource="{Binding Path=Tweaks}" SelectedValue="{Binding Path=CurrentTweak,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="8,0,8,8" Background="{DynamicResource NormalBackground}" Foreground="{DynamicResource NormalForeground}" MouseDoubleClick="TweaksListBox_MouseDoubleClick" Grid.ColumnSpan="3">
                             <ListBox.ItemTemplate>
@@ -556,10 +559,10 @@
                         </ListBox>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Settings" Foreground="{DynamicResource NormalForeground}">
+                <TabItem Header="{x:Static resx:Translations.SettingsTab}" Foreground="{DynamicResource NormalForeground}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                            <Label Content="Theme" Width="100" Foreground="{DynamicResource NormalForeground}"/>
+                            <Label Content="{x:Static resx:Translations.ThemeLabel}" Width="100" Foreground="{DynamicResource NormalForeground}"/>
                             <ComboBox
                                 Width="200"
                                 VerticalAlignment="Center"
@@ -578,7 +581,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Content="Foundry Path" Width="100" Foreground="{DynamicResource NormalForeground}"/>
+                            <Label Grid.Column="0" Content="{x:Static resx:Translations.FoundryPathLabel}" Width="100" Foreground="{DynamicResource NormalForeground}"/>
                             <TextBox Grid.Column="1" x:Name="FoundryPathTextBox" VerticalContentAlignment="Center" Text="{Binding FoundryPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource NormalBackground}" Foreground="{DynamicResource NormalForeground}" BorderThickness="0,0,0,1" BorderBrush="{DynamicResource NormalForeground}"/>
                             <Button Grid.Column="2" Content="Browse..." Click="BrowseFoundryPathButton_Click" Margin="4,0,0,0" Width="75" HorizontalAlignment="Left"/>
                             <Button Grid.Column="3" Content="Auto" Click="AutoFoundryPathButton_Click" Margin="4,0,0,0" Width="75" HorizontalAlignment="Left"/>
