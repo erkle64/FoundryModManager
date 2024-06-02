@@ -272,6 +272,8 @@ namespace FoundryModManager2024
                     windowConfig.Width = data.windowWidth;
                     windowConfig.Height = data.windowHeight;
                     windowConfig.Maximized = data.windowMaximized;
+
+                    viewModel.CheckForUpdates = data?.checkForUpdates ?? true;
                 }
             }
 

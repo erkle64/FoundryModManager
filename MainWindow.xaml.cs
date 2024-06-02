@@ -115,6 +115,8 @@ namespace FoundryModManager2024
             data.windowHeight = _instance!.Height;
             data.windowMaximized = _instance!.WindowState == WindowState.Maximized;
 
+            data.checkForUpdates = _instance._viewModel.CheckForUpdates;
+
             var json = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(_instance._configFilePath, json);
         }
@@ -704,6 +706,11 @@ namespace FoundryModManager2024
 
             _hasDoneVersionCheck = true;
 
+            if (_viewModel.CheckForUpdates) AskForUpdateIfFound(false);
+        }
+
+        private void AskForUpdateIfFound(bool notifyUpToDate)
+        {
             if (CheckForUpdate(out var currentVersion, out var newVersion, out var installerType))
             {
                 var downloadFilename = "FoundryModManagerSetup.msi";
@@ -737,6 +744,10 @@ namespace FoundryModManager2024
                     }
                 }
             }
+            else if (notifyUpToDate)
+            {
+                MessageBox.Show("FoundryModManager is up to date.");
+            }
         }
 
         private void RefreshTweaksButton_Click(object sender, RoutedEventArgs e)
@@ -747,6 +758,11 @@ namespace FoundryModManager2024
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             SaveConfiguration();
+        }
+
+        private void CheckForUpdatesButton_Click(object sender, RoutedEventArgs e)
+        {
+            AskForUpdateIfFound(true);
         }
     }
 }

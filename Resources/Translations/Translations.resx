@@ -144,4 +144,10 @@
   <data name="FoundryPathLabel" xml:space="preserve">
     <value>Foundry Path</value>
   </data>
+  <data name="CheckForUpdatesLabel" xml:space="preserve">
+    <value>Check for Updates</value>
+  </data>
+  <data name="CheckNowButton" xml:space="preserve">
+    <value>Check Now</value>
+  </data>
 </root>

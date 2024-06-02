@@ -8,7 +8,7 @@
         xmlns:resx="clr-namespace:FoundryModManager2024.Resources.Translations"
         
         mc:Ignorable="d"
-        Title="Foundry Mod Manager 2024 v0.5.3"
+        Title="Foundry Mod Manager 2024 v0.5.4"
         Height="500" Width="800"
         MinHeight="300" MinWidth="440"
         WindowStyle="None"
@@ -444,7 +444,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <!--App icon-->
                     <Image Source="/logo.png" Width="18" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <TextBlock Text="Foundry Mod Manager 2024 v0.5.3" Margin="4 3 0 0" Foreground="{DynamicResource TitleForeground}" FontWeight="DemiBold" />
+                    <TextBlock Text="Foundry Mod Manager 2024 v0.5.4" Margin="4 3 0 0" Foreground="{DynamicResource TitleForeground}" FontWeight="DemiBold" />
                 </StackPanel>
 
                 <!--Caption buttons-->
@@ -562,7 +562,7 @@
                 <TabItem Header="{x:Static resx:Translations.SettingsTab}" Foreground="{DynamicResource NormalForeground}">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                            <Label Content="{x:Static resx:Translations.ThemeLabel}" Width="100" Foreground="{DynamicResource NormalForeground}"/>
+                            <Label Content="{x:Static resx:Translations.ThemeLabel}" Foreground="{DynamicResource NormalForeground}"/>
                             <ComboBox
                                 Width="200"
                                 VerticalAlignment="Center"
@@ -581,12 +581,17 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Content="{x:Static resx:Translations.FoundryPathLabel}" Width="100" Foreground="{DynamicResource NormalForeground}"/>
+                            <Label Grid.Column="0" Content="{x:Static resx:Translations.FoundryPathLabel}" Foreground="{DynamicResource NormalForeground}"/>
                             <TextBox Grid.Column="1" x:Name="FoundryPathTextBox" VerticalContentAlignment="Center" Text="{Binding FoundryPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource NormalBackground}" Foreground="{DynamicResource NormalForeground}" BorderThickness="0,0,0,1" BorderBrush="{DynamicResource NormalForeground}"/>
                             <Button Grid.Column="2" Content="Browse..." Click="BrowseFoundryPathButton_Click" Margin="4,0,0,0" Width="75" HorizontalAlignment="Left"/>
                             <Button Grid.Column="3" Content="Auto" Click="AutoFoundryPathButton_Click" Margin="4,0,0,0" Width="75" HorizontalAlignment="Left"/>
                             <Button Grid.Column="4" Content="Open Folder" Click="OpenFoundryPathButton_Click" Margin="4,0,8,0" Width="75" HorizontalAlignment="Left"/>
                         </Grid>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <Label Content="{x:Static resx:Translations.CheckForUpdatesLabel}" Foreground="{DynamicResource NormalForeground}"/>
+                            <CheckBox IsChecked="{Binding Path=CheckForUpdates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Foreground="{DynamicResource NormalForeground}" />
+                            <Button Content="{x:Static resx:Translations.CheckNowButton}" Click="CheckForUpdatesButton_Click" Margin="16,0,0,0" Width="75"/>
+                        </StackPanel>
                     </StackPanel>
                 </TabItem>
             </TabControl>

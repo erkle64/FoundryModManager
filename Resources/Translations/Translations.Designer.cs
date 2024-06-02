@@ -97,6 +97,24 @@ namespace FoundryModManager2024.Resources.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for Updates.
+        /// </summary>
+        public static string CheckForUpdatesLabel {
+            get {
+                return ResourceManager.GetString("CheckForUpdatesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check Now.
+        /// </summary>
+        public static string CheckNowButton {
+            get {
+                return ResourceManager.GetString("CheckNowButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Foundry Path.
         /// </summary>
         public static string FoundryPathLabel {

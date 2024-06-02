@@ -5,6 +5,13 @@ namespace FoundryModManager2024
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private bool _checkForUpdates = true;
+        public bool CheckForUpdates
+        {
+            get => _checkForUpdates;
+            set { _checkForUpdates = value; OnPropertyChanged(); }
+        }
+
         private string _foundryPath = string.Empty;
         public string FoundryPath
         {
