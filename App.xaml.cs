@@ -57,7 +57,7 @@ namespace FoundryModManager2024
             var mods = modEntries.Select(x => new ModViewModel
             {
                 Name = x.name ?? x.folder ?? "unnamed",
-                Description = x.description ?? string.Empty,
+                Description = $"{(x.author != null ? $"Author: {x.author}\r\n" : "")}{x.description ?? string.Empty}",
                 Requirements = x.requirements ?? new string[0],
                 Home = x.home ?? string.Empty,
                 Config = x.config ?? string.Empty,
