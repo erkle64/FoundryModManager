@@ -1,7 +1,6 @@
 {
   "sources": [
     "https://erkle64.github.io/FoundryModManager/mod_data.2024.json",
-    "https://shiggityshaggs.github.io/FoundryModManager_mod_data.json",
-    "https://59thcasper.github.io/FoundryModManager_Mods.json"
+    "https://shiggityshaggs.github.io/FoundryModManager_mod_data.json"
   ]
 }
