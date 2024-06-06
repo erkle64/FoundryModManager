@@ -8,7 +8,7 @@
         xmlns:resx="clr-namespace:FoundryModManager2024.Resources.Translations"
         
         mc:Ignorable="d"
-        Title="Foundry Mod Manager 2024 v0.5.4"
+        Title="Foundry Mod Manager 2024 v0.5.5"
         Height="500" Width="800"
         MinHeight="300" MinWidth="440"
         WindowStyle="None"
@@ -444,7 +444,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <!--App icon-->
                     <Image Source="/logo.png" Width="18" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <TextBlock Text="Foundry Mod Manager 2024 v0.5.4" Margin="4 3 0 0" Foreground="{DynamicResource TitleForeground}" FontWeight="DemiBold" />
+                    <TextBlock Text="Foundry Mod Manager 2024 v0.5.5" Margin="4 3 0 0" Foreground="{DynamicResource TitleForeground}" FontWeight="DemiBold" />
                 </StackPanel>
 
                 <!--Caption buttons-->

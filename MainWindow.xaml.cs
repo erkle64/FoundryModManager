@@ -404,23 +404,23 @@ namespace FoundryModManager2024
                             switch (m.Groups[1].Value)
                             {
                                 case ">=":
-                                    if (version >= matchVersion) baseModURL = versionInfo.Value;
+                                    if (version >= matchVersion) modURL = versionInfo.Value;
                                     break;
 
                                 case ">":
-                                    if (version > matchVersion) baseModURL = versionInfo.Value;
+                                    if (version > matchVersion) modURL = versionInfo.Value;
                                     break;
 
                                 case "<=":
-                                    if (version <= matchVersion) baseModURL = versionInfo.Value;
+                                    if (version <= matchVersion) modURL = versionInfo.Value;
                                     break;
 
                                 case "<":
-                                    if (version < matchVersion) baseModURL = versionInfo.Value;
+                                    if (version < matchVersion) modURL = versionInfo.Value;
                                     break;
 
                                 case "=":
-                                    if (version == matchVersion) baseModURL = versionInfo.Value;
+                                    if (version == matchVersion) modURL = versionInfo.Value;
                                     break;
                             }
                             break;
@@ -431,7 +431,6 @@ namespace FoundryModManager2024
             }
 
             Debug.Assert(modURL != null);
-            Debug.Assert(baseModURL != null);
 
             var folderName = mod.Folder ?? mod.Name;
             Debug.Assert(folderName != null);
@@ -442,7 +441,7 @@ namespace FoundryModManager2024
             var cachedModFolderPath = Path.Combine(_cacheFolderPath, mod.Name);
             if (!Directory.Exists(cachedModFolderPath)) Directory.CreateDirectory(cachedModFolderPath);
 
-            var cachedModPath = Path.Combine(cachedModFolderPath, Path.GetFileName(baseModURL));
+            var cachedModPath = Path.Combine(cachedModFolderPath, Path.GetFileName(modURL));
             var cachedModSourcePath = Path.Combine(cachedModFolderPath, "source.url");
 
             if (File.Exists(cachedModPath))
