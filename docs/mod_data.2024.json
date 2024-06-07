@@ -215,7 +215,7 @@
     {
       "name": "WaterPlacer",
       "folder": "WaterPlacer",
-      "url": "https://github.com/erkle64/WaterPlacer/releases/download/v0.1.0/WaterPlacer.mod",
+      "url": "https://github.com/erkle64/WaterPlacer/releases/download/v0.2.0/WaterPlacer.mod",
       "home": "https://github.com/erkle64/WaterPlacer/",
       "author": "erkle64",
       "description": "Adds a water placer tool.  Default key is [.  Use with care and save first.",
