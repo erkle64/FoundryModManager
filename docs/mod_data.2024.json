@@ -222,6 +222,17 @@
       "requirements": [
         "Unfoundry"
       ]
+    },
+    {
+      "name": "FreeStuff",
+      "folder": "FreeStuff",
+      "url": "https://github.com/erkle64/FreeStuff/releases/download/v0.1.0/FreeStuff.mod",
+      "home": "https://github.com/erkle64/FreeStuff/",
+      "author": "erkle64",
+      "description": "Adds a creative chest for continuously spawning items.  Available in creative mode or the debug panel.",
+      "requirements": [
+        "Unfoundry"
+      ]
     }
   ]
 }
