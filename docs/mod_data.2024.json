@@ -195,6 +195,7 @@
       "folder": "FoundryCommands",
       "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.7/FoundryCommands.mod",
       "home": "https://github.com/erkle64/FoundryCommands/",
+      "config": "erkle64.FoundryCommands.ini",
       "author": "erkle64",
       "description": "Adds various commands to the chat window.",
       "requirements": [
@@ -206,6 +207,7 @@
       "folder": "Tweakificator",
       "url": "https://github.com/erkle64/Tweakificator/releases/download/v2.1.6/Tweakificator.mod",
       "home": "https://github.com/erkle64/Tweakificator/",
+      "config": "erkle64.Tweakificator.ini",
       "author": "erkle64",
       "description": "Allows the use of JSON files to change and/or add items, fluids, recipes, research, buildings etc.",
       "requirements": [
@@ -217,6 +219,7 @@
       "folder": "WaterPlacer",
       "url": "https://github.com/erkle64/WaterPlacer/releases/download/v0.2.0/WaterPlacer.mod",
       "home": "https://github.com/erkle64/WaterPlacer/",
+      "config": "erkle64.WaterPlacer.ini",
       "author": "erkle64",
       "description": "Adds a water placer tool.  Default key is [.  Use with care and save first.",
       "requirements": [
@@ -228,6 +231,7 @@
       "folder": "FreeStuff",
       "url": "https://github.com/erkle64/FreeStuff/releases/download/v0.2.0/FreeStuff.mod",
       "home": "https://github.com/erkle64/FreeStuff/",
+      "config": "erkle64.FreeStuff.ini",
       "author": "erkle64",
       "description": "Adds a creative chest for continuously spawning items.  Available in creative mode or the debug panel.",
       "requirements": [
