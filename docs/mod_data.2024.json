@@ -226,7 +226,7 @@
     {
       "name": "FreeStuff",
       "folder": "FreeStuff",
-      "url": "https://github.com/erkle64/FreeStuff/releases/download/v0.2.0/FreeStuff.mod",
+      "url": "https://github.com/erkle64/FreeStuff/releases/download/v0.1.1/FreeStuff.mod",
       "home": "https://github.com/erkle64/FreeStuff/",
       "author": "erkle64",
       "description": "Adds a creative chest for continuously spawning items.  Available in creative mode or the debug panel.",
