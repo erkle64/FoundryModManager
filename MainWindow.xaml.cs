@@ -490,7 +490,7 @@ namespace FoundryModManager2024
             dialog.FileName = _viewModel.FoundryPath;
             if (dialog.ShowDialog() == true)
             {
-                _viewModel.FoundryPath = dialog.FileName;
+                _viewModel.FoundryPath = Path.GetDirectoryName(dialog.FileName) ?? string.Empty;
             }
         }
 
@@ -499,10 +499,18 @@ namespace FoundryModManager2024
             var steamGameLocator = new SteamGameLocator();
             if (steamGameLocator.getIsSteamInstalled())
             {
-                var gameInfo = steamGameLocator.getGameInfoByFolder("FOUNDRY");
-                if (!string.IsNullOrEmpty(gameInfo.steamGameLocation))
+                try
                 {
-                    _viewModel.FoundryPath = gameInfo.steamGameLocation.Replace(@"\\", @"\");
+                    var gameInfo = steamGameLocator.getGameInfoByFolder("FOUNDRY");
+                    if (!string.IsNullOrEmpty(gameInfo.steamGameLocation))
+                    {
+                        _viewModel.FoundryPath = gameInfo.steamGameLocation.Replace(@"\\", @"\");
+                    }
+                }
+                catch
+                {
+                    _viewModel.FoundryPath = string.Empty;
+                    MessageBox.Show("Failed to find FOUNDRY Steam installation.");
                 }
             }
         }
@@ -762,6 +770,47 @@ namespace FoundryModManager2024
         private void CheckForUpdatesButton_Click(object sender, RoutedEventArgs e)
         {
             AskForUpdateIfFound(true);
+        }
+
+        private void ClearCacheFolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Clearing the cache will cause all enabled mods to be redownloaded next time you click Apply.\nAre you sure?", "Clear Cache", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                var applyWindow = new ApplyWindow(progress =>
+                {
+                    if (Directory.Exists(_cacheFolderPath))
+                    {
+                        foreach (var dirPath in Directory.GetDirectories(_cacheFolderPath))
+                        {
+                            progress.Report($"Deleting {Path.GetFileName(dirPath)}...");
+                            Directory.Delete(dirPath, true);
+                        }
+                    }
+
+                    progress.Report("Done!");
+                    Thread.Sleep(1000);
+
+                    return () =>
+                    {
+                    };
+                });
+                applyWindow.ShowDialog();
+            }
+        }
+
+        private void OpenCacheFolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Directory.Exists(_cacheFolderPath))
+            {
+                MessageBox.Show("Cache folder not found.");
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = "explorer.exe",
+                Arguments = _cacheFolderPath
+            });
         }
     }
 }

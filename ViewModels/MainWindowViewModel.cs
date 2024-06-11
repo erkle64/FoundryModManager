@@ -16,7 +16,21 @@ namespace FoundryModManager2024
         public string FoundryPath
         {
             get => _foundryPath;
-            set { _foundryPath = value; OnPropertyChanged(); MainWindow.SaveConfiguration(); LoadTweaks(); }
+            set {
+                _foundryPath = value;
+                OnPropertyChanged();
+                MainWindow.SaveConfiguration();
+                LoadTweaks();
+                var exeFilePath = Path.Combine(FoundryPath, "FOUNDRY.exe");
+                FoundryPathIsValid = File.Exists(exeFilePath);
+            }
+        }
+
+        private bool _foundryPathIsValid = false;
+        public bool FoundryPathIsValid
+        {
+            get => _foundryPathIsValid;
+            set { _foundryPathIsValid = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<ModsConfigurationViewModel> _configurations = new();
@@ -71,7 +85,7 @@ namespace FoundryModManager2024
             Tweaks.Clear();
             CurrentTweak = null;
 
-            var tweaksFilePath = Path.Combine(FoundryPath, "Tweaks");
+            var tweaksFilePath = Path.Combine(FoundryPath, "tweaks");
             if (!Directory.Exists(tweaksFilePath)) return;
 
             foreach (var filePath in Directory.GetFiles(tweaksFilePath, "*.*", SearchOption.AllDirectories))

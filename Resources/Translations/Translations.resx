@@ -150,4 +150,7 @@
   <data name="CheckNowButton" xml:space="preserve">
     <value>Check Now</value>
   </data>
+  <data name="CacheFolderLabel" xml:space="preserve">
+    <value>Cache Folder</value>
+  </data>
 </root>

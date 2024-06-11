@@ -97,6 +97,15 @@ namespace FoundryModManager2024.Resources.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cache Folder.
+        /// </summary>
+        public static string CacheFolderLabel {
+            get {
+                return ResourceManager.GetString("CacheFolderLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for Updates.
         /// </summary>
         public static string CheckForUpdatesLabel {

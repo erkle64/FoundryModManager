@@ -225,10 +225,17 @@ namespace FoundryModManager2024
                         var steamGameLocator = new SteamGameLocator();
                         if (steamGameLocator.getIsSteamInstalled())
                         {
-                            var gameInfo = steamGameLocator.getGameInfoByFolder("FOUNDRY");
-                            if (!string.IsNullOrEmpty(gameInfo.steamGameLocation))
+                            try
                             {
-                                viewModel.FoundryPath = gameInfo.steamGameLocation.Replace(@"\\", @"\");
+                                var gameInfo = steamGameLocator.getGameInfoByFolder("FOUNDRY");
+                                if (!string.IsNullOrEmpty(gameInfo.steamGameLocation))
+                                {
+                                    viewModel.FoundryPath = gameInfo.steamGameLocation.Replace(@"\\", @"\");
+                                }
+                            }
+                            catch
+                            {
+                                viewModel.FoundryPath = string.Empty;
                             }
                         }
                     }
