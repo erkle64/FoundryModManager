@@ -237,6 +237,18 @@
       "requirements": [
         "Unfoundry"
       ]
+    },
+    {
+      "name": "PlanIt (Experimental)",
+      "folder": "PlanIt",
+      "url": "https://github.com/erkle64/PlanIt/releases/download/v0.1.0/PlanIt.mod",
+      "home": "https://github.com/erkle64/PlanIt/",
+      "config": "erkle64.PlanIt.ini",
+      "author": "erkle64",
+      "description": "In game recipe planner. Open with keypad / by default. Can be changed in the config.",
+      "requirements": [
+        "Unfoundry"
+      ]
     }
   ]
 }
