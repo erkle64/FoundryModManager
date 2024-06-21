@@ -3,7 +3,7 @@
     {
       "name": "Unfoundry",
       "folder": "A_Unfoundry",
-      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.11/Unfoundry.mod",
+      "url": "https://github.com/erkle64/Unfoundry/releases/download/v0.3.12/Unfoundry.mod",
       "home": "https://github.com/erkle64/Unfoundry/",
       "config": "erkle64.Unfoundry.ini",
       "author": "erkle64",
@@ -37,7 +37,7 @@
     {
       "name": "Duplicationer",
       "folder": "Duplicationer",
-      "url": "https://github.com/erkle64/Duplicationer/releases/download/v0.4.20/Duplicationer.mod",
+      "url": "https://github.com/erkle64/Duplicationer/releases/download/v0.4.21/Duplicationer.mod",
       "home": "https://github.com/erkle64/Duplicationer/",
       "config": "erkle64.duplicationer.ini",
       "author": "erkle64",
