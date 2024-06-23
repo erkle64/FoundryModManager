@@ -124,6 +124,15 @@ namespace FoundryModManager2024.Resources.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close on running FOUNDRY.
+        /// </summary>
+        public static string CloseOnRunLabel {
+            get {
+                return ResourceManager.GetString("CloseOnRunLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Foundry Path.
         /// </summary>
         public static string FoundryPathLabel {
@@ -165,6 +174,15 @@ namespace FoundryModManager2024.Resources.Translations {
         public static string ThemeLabel {
             get {
                 return ResourceManager.GetString("ThemeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to update pending.
+        /// </summary>
+        public static string UpdatePendingLabel {
+            get {
+                return ResourceManager.GetString("UpdatePendingLabel", resourceCulture);
             }
         }
     }

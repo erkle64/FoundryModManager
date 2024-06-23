@@ -153,4 +153,10 @@
   <data name="CacheFolderLabel" xml:space="preserve">
     <value>Cache Folder</value>
   </data>
+  <data name="CloseOnRunLabel" xml:space="preserve">
+    <value>Close on running FOUNDRY</value>
+  </data>
+  <data name="UpdatePendingLabel" xml:space="preserve">
+    <value>update pending</value>
+  </data>
 </root>

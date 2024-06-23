@@ -12,6 +12,13 @@ namespace FoundryModManager2024
             set { _checkForUpdates = value; OnPropertyChanged(); }
         }
 
+        private bool _closeOnRun = false;
+        public bool CloseOnRun
+        {
+            get => _closeOnRun;
+            set { _closeOnRun = value; OnPropertyChanged(); }
+        }
+
         private string _foundryPath = string.Empty;
         public string FoundryPath
         {
@@ -20,6 +27,7 @@ namespace FoundryModManager2024
                 _foundryPath = value;
                 OnPropertyChanged();
                 MainWindow.SaveConfiguration();
+                MainWindow.UpdateModUpdateVisibilities();
                 LoadTweaks();
                 var exeFilePath = Path.Combine(FoundryPath, "FOUNDRY.exe");
                 FoundryPathIsValid = File.Exists(exeFilePath);
@@ -44,7 +52,12 @@ namespace FoundryModManager2024
         public ModsConfigurationViewModel? CurrentConfiguration
         {
             get => _currentConfiguration;
-            set { _currentConfiguration = value; OnPropertyChanged(); MainWindow.SaveConfiguration(); }
+            set {
+                _currentConfiguration = value;
+                OnPropertyChanged();
+                MainWindow.SaveConfiguration();
+                MainWindow.UpdateModUpdateVisibilities();
+            }
         }
 
         private ThemeViewModel? _currentTheme = null;

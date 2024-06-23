@@ -17,5 +17,6 @@ namespace FoundryModManager2024
         public double? windowHeight;
         public bool? windowMaximized;
         public bool? checkForUpdates;
+        public bool? closeOnRun;
     }
 }

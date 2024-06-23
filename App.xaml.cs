@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace FoundryModManager2024
@@ -63,7 +64,8 @@ namespace FoundryModManager2024
                 Config = x.config ?? string.Empty,
                 Folder = x.folder ?? x.name ?? string.Empty,
                 URL = x.url ?? string.Empty,
-                Versions = x.versions ?? new Dictionary<string, string>()
+                Versions = x.versions ?? new Dictionary<string, string>(),
+                UpdateVisibility = Visibility.Collapsed
             }).ToArray();
             Array.Sort(mods, (x, y) => string.Compare(x.Name, y.Name, StringComparison.InvariantCultureIgnoreCase));
             LoadConfig(configFilePath, viewModel, mods, out var windowConfig);
@@ -281,6 +283,8 @@ namespace FoundryModManager2024
                     windowConfig.Maximized = data.windowMaximized;
 
                     viewModel.CheckForUpdates = data?.checkForUpdates ?? true;
+
+                    viewModel.CloseOnRun = data?.closeOnRun ?? false;
                 }
             }
 

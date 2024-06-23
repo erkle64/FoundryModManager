@@ -153,4 +153,10 @@
   <data name="CacheFolderLabel" xml:space="preserve">
     <value>Cachemap</value>
   </data>
+  <data name="CloseOnRunLabel" xml:space="preserve">
+    <value>Sluiten en Foundry starten</value>
+  </data>
+  <data name="UpdatePendingLabel" xml:space="preserve">
+    <value>update in behandeling</value>
+  </data>
 </root>

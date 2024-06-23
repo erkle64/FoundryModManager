@@ -8,7 +8,7 @@
         xmlns:resx="clr-namespace:FoundryModManager2024.Resources.Translations"
         
         mc:Ignorable="d"
-        Title="Foundry Mod Manager 2024 v0.5.6"
+        Title="Foundry Mod Manager 2024 v0.5.7"
         Height="500" Width="800"
         MinHeight="300" MinWidth="440"
         WindowStyle="None"
@@ -444,7 +444,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <!--App icon-->
                     <Image Source="/logo.png" Width="18" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <TextBlock Text="Foundry Mod Manager 2024 v0.5.6" Margin="4 3 0 0" Foreground="{DynamicResource TitleForeground}" FontWeight="DemiBold" />
+                    <TextBlock Text="Foundry Mod Manager 2024 v0.5.7" Margin="4 3 0 0" Foreground="{DynamicResource TitleForeground}" FontWeight="DemiBold" />
                 </StackPanel>
 
                 <!--Caption buttons-->
@@ -476,13 +476,19 @@
                                 <ColumnDefinition Width="5"/>
                                 <ColumnDefinition Width="0*" MinWidth="200"/>
                             </Grid.ColumnDefinitions>
-                            <ListBox Grid.Column="0" ItemsSource="{Binding Path=CurrentConfiguration.Mods}" VerticalAlignment="Stretch" Margin="0,0,0,1" Background="{DynamicResource NormalBackground}" Foreground="{DynamicResource NormalForeground}" SelectedItem="{Binding CurrentConfiguration.SelectedMod}" MouseDoubleClick="ModsListBox_MouseDoubleClick" BorderThickness="0">
+                            <ListBox Grid.Column="0" ItemsSource="{Binding Path=CurrentConfiguration.Mods}" VerticalAlignment="Stretch" Margin="0,0,0,1" Background="{DynamicResource NormalBackground}" Foreground="{DynamicResource NormalForeground}" SelectedItem="{Binding CurrentConfiguration.SelectedMod}" MouseDoubleClick="ModsListBox_MouseDoubleClick" BorderThickness="0" HorizontalContentAlignment="Stretch">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                                            <CheckBox IsChecked="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource NormalForeground}" />
-                                            <TextBlock Text="{Binding Path=Mod.Name}"/>
-                                        </StackPanel>
+                                        <Grid VerticalAlignment="Bottom">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox Grid.Column="0" IsChecked="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource NormalForeground}" />
+                                            <TextBlock Grid.Column="1" Text="{Binding Path=Mod.Name}"/>
+                                            <TextBlock Grid.Column="2" Text="{x:Static resx:Translations.UpdatePendingLabel}" HorizontalAlignment="Right" TextAlignment="Right" Visibility="{Binding Path=Mod.UpdateVisibility}"/>
+                                        </Grid>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
@@ -596,6 +602,10 @@
                             <Label Content="{x:Static resx:Translations.CacheFolderLabel}" Foreground="{DynamicResource NormalForeground}"/>
                             <Button Content="Clear" Click="ClearCacheFolderButton_Click" Margin="4,0,0,0" Width="75"/>
                             <Button Content="Open" Click="OpenCacheFolderButton_Click" Margin="4,0,8,0" Width="75"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <Label Content="{x:Static resx:Translations.CloseOnRunLabel}" Foreground="{DynamicResource NormalForeground}"/>
+                            <CheckBox IsChecked="{Binding Path=CloseOnRun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Foreground="{DynamicResource NormalForeground}" />
                         </StackPanel>
                     </StackPanel>
                 </TabItem>

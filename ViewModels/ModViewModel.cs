@@ -1,4 +1,6 @@
-﻿namespace FoundryModManager2024
+﻿using System.Windows;
+
+namespace FoundryModManager2024
 {
     public class ModViewModel : ViewModelBase
     {
@@ -56,6 +58,16 @@
         {
             get => _versions;
             set { _versions = value; OnPropertyChanged(); }
+        }
+
+        private Visibility _updateVisibility = Visibility.Collapsed;
+        public Visibility UpdateVisibility
+        {
+            get => _updateVisibility;
+            set {
+                if (_updateVisibility == value) return;
+                _updateVisibility = value; OnPropertyChanged();
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Narod.SteamGameFinder;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
@@ -82,6 +83,8 @@ namespace FoundryModManager2024
                     MaximizeButton.Visibility = Visibility.Collapsed;
                 }
             }
+
+            UpdateModUpdateVisibilities();
         }
 
         public static void DisableConfigUpdate() => _disableConfigUpdate++;
@@ -116,6 +119,8 @@ namespace FoundryModManager2024
             data.windowMaximized = _instance!.WindowState == WindowState.Maximized;
 
             data.checkForUpdates = _instance._viewModel.CheckForUpdates;
+
+            data.closeOnRun = _instance._viewModel.CloseOnRun;
 
             var json = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(_instance._configFilePath, json);
@@ -390,45 +395,7 @@ namespace FoundryModManager2024
 
             var modURL = mod.URL;
             var baseModURL = mod.URL;
-
-            if (mod.Versions != null)
-            {
-                foreach (var versionInfo in mod.Versions)
-                {
-                    var m = Regex.Match(versionInfo.Key, @"^(<=?|>=?|=)(\d+)\.(\d+)\.(\d+)\.(\d+)$", RegexOptions.Singleline);
-                    if (m.Success)
-                    {
-                        try
-                        {
-                            var matchVersion = new Version(Convert.ToInt32(m.Groups[2].Value), Convert.ToInt32(m.Groups[3].Value), Convert.ToInt32(m.Groups[4].Value), Convert.ToInt32(m.Groups[5].Value));
-                            switch (m.Groups[1].Value)
-                            {
-                                case ">=":
-                                    if (version >= matchVersion) modURL = versionInfo.Value;
-                                    break;
-
-                                case ">":
-                                    if (version > matchVersion) modURL = versionInfo.Value;
-                                    break;
-
-                                case "<=":
-                                    if (version <= matchVersion) modURL = versionInfo.Value;
-                                    break;
-
-                                case "<":
-                                    if (version < matchVersion) modURL = versionInfo.Value;
-                                    break;
-
-                                case "=":
-                                    if (version == matchVersion) modURL = versionInfo.Value;
-                                    break;
-                            }
-                            break;
-                        }
-                        catch (Exception) { }
-                    }
-                }
-            }
+            GetModURLs(version, ref modURL, ref baseModURL, mod.Versions);
 
             Debug.Assert(modURL != null);
 
@@ -483,6 +450,95 @@ namespace FoundryModManager2024
             }
         }
 
+        private static void GetModURLs(Version version, ref string modURL, ref string baseModURL, Dictionary<string, string>? modVersions)
+        {
+            if (modVersions != null)
+            {
+                foreach (var versionInfo in modVersions)
+                {
+                    var m = Regex.Match(versionInfo.Key, @"^(<=?|>=?|=)(\d+)\.(\d+)\.(\d+)\.(\d+)$", RegexOptions.Singleline);
+                    if (m.Success)
+                    {
+                        try
+                        {
+                            var matchVersion = new Version(Convert.ToInt32(m.Groups[2].Value), Convert.ToInt32(m.Groups[3].Value), Convert.ToInt32(m.Groups[4].Value), Convert.ToInt32(m.Groups[5].Value));
+                            switch (m.Groups[1].Value)
+                            {
+                                case ">=":
+                                    if (version >= matchVersion) modURL = versionInfo.Value;
+                                    break;
+
+                                case ">":
+                                    if (version > matchVersion) modURL = versionInfo.Value;
+                                    break;
+
+                                case "<=":
+                                    if (version <= matchVersion) modURL = versionInfo.Value;
+                                    break;
+
+                                case "<":
+                                    if (version < matchVersion) modURL = versionInfo.Value;
+                                    break;
+
+                                case "=":
+                                    if (version == matchVersion) modURL = versionInfo.Value;
+                                    break;
+                            }
+                            break;
+                        }
+                        catch (Exception) { }
+                    }
+                }
+            }
+        }
+
+        internal static void UpdateModUpdateVisibilities()
+        {
+            if (_instance == null) return;
+
+            var versionPath = Path.Combine(_instance._viewModel.FoundryPath, "version.txt");
+            var versionText = "0.0.0.0";
+            if (File.Exists(versionPath))
+            {
+                versionText = File.ReadAllText(versionPath);
+            }
+            var version = new Version(versionText);
+
+            Debug.Assert(_instance._viewModel.CurrentConfiguration?.Mods != null);
+            foreach (var modConfig in _instance._viewModel.CurrentConfiguration.Mods)
+            {
+                if (!modConfig.IsEnabled)
+                {
+                    modConfig.Mod!.UpdateVisibility = Visibility.Collapsed;
+                    continue;
+                }
+
+                var mod = modConfig.Mod!;
+                var updatePending = true;
+                var modURL = mod.URL;
+                var baseModURL = mod.URL;
+                GetModURLs(version, ref modURL, ref baseModURL, mod.Versions);
+
+                var cachedModFolderPath = Path.Combine(_instance._cacheFolderPath, mod.Name);
+                if (Directory.Exists(cachedModFolderPath))
+                {
+                    var cachedModPath = Path.Combine(cachedModFolderPath, Path.GetFileName(modURL));
+                    var cachedModSourcePath = Path.Combine(cachedModFolderPath, "source.url");
+
+                    if (File.Exists(cachedModPath))
+                    {
+                        if (File.Exists(cachedModSourcePath))
+                        {
+                            var sourceURL = File.ReadAllText(cachedModSourcePath);
+                            if (sourceURL == modURL) updatePending = false;
+                        }
+                    }
+                }
+
+                mod.UpdateVisibility = updatePending ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
         private void BrowseFoundryPathButton_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
@@ -526,7 +582,7 @@ namespace FoundryModManager2024
             Process.Start(new ProcessStartInfo()
             {
                 FileName = "explorer.exe",
-                Arguments = _viewModel.FoundryPath
+                Arguments = $"\"{_viewModel.FoundryPath}\""
             });
         }
 
@@ -570,7 +626,7 @@ namespace FoundryModManager2024
             Process.Start(new ProcessStartInfo()
             {
                 FileName = textEditorPath,
-                Arguments = configPath
+                Arguments = $"\"{configPath}\""
             });
         }
 
@@ -589,7 +645,7 @@ namespace FoundryModManager2024
             Process.Start(new ProcessStartInfo()
             {
                 FileName = "explorer.exe",
-                Arguments = modPath
+                Arguments = $"\"{modPath}\""
             });
         }
 
@@ -649,11 +705,15 @@ namespace FoundryModManager2024
 
                 return () =>
                 {
+                    UpdateModUpdateVisibilities();
+
                     Process.Start(new ProcessStartInfo()
                     {
                         FileName = "steam://run/983870",
                         UseShellExecute = true
                     });
+
+                    if (_viewModel.CloseOnRun) Close();
                 };
             });
             applyWindow.ShowDialog();
@@ -667,6 +727,8 @@ namespace FoundryModManager2024
 
                 return () =>
                 {
+                    UpdateModUpdateVisibilities();
+
                     var exePath = Path.Combine(_viewModel.FoundryPath, "Foundry.exe");
                     if (!File.Exists(exePath))
                     {
@@ -679,6 +741,8 @@ namespace FoundryModManager2024
                         FileName = exePath,
                         WorkingDirectory = _viewModel.FoundryPath
                     });
+
+                    if (_viewModel.CloseOnRun) Close();
                 };
             });
             applyWindow.ShowDialog();
@@ -692,6 +756,7 @@ namespace FoundryModManager2024
 
                 return () =>
                 {
+                    UpdateModUpdateVisibilities();
                 };
             });
             applyWindow.ShowDialog();

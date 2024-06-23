@@ -28,6 +28,7 @@
                 _parent.UpdateDependencies(this, _isEnabled);
                 MainWindow.EnableConfigUpdate();
                 MainWindow.SaveConfiguration();
+                MainWindow.UpdateModUpdateVisibilities();
             }
         }
     }
