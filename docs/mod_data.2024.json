@@ -193,7 +193,7 @@
     {
       "name": "FoundryCommands",
       "folder": "FoundryCommands",
-      "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.8/FoundryCommands.mod",
+      "url": "https://github.com/erkle64/FoundryCommands/releases/download/v1.6.9/FoundryCommands.mod",
       "home": "https://github.com/erkle64/FoundryCommands/",
       "config": "erkle64.FoundryCommands.ini",
       "author": "erkle64",
@@ -205,7 +205,7 @@
     {
       "name": "Tweakificator",
       "folder": "Tweakificator",
-      "url": "https://github.com/erkle64/Tweakificator/releases/download/v2.1.11/Tweakificator.mod",
+      "url": "https://github.com/erkle64/Tweakificator/releases/download/v2.1.12/Tweakificator.mod",
       "home": "https://github.com/erkle64/Tweakificator/",
       "config": "erkle64.Tweakificator.ini",
       "author": "erkle64",
